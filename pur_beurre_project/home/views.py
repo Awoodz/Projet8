@@ -4,5 +4,5 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    message = "Ceci est la page du store"
+    message = "Ceci est la page d'accueil"
     return HttpResponse(message)

@@ -1,5 +1,8 @@
 env
+.vscode
 pur_beurre_project/__pycache__
 pur_beurre_project/pur_beurre_project/__pycache__
 pur_beurre_project/webapp/__pycache__
 pur_beurre_project/webapp/migrations/__pycache__/
+pur_beurre_project/essai.py
+pur_beurre_project/fonctions_temp.py

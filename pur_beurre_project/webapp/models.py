@@ -1,10 +1,14 @@
 from django.db import models
 
+class Category(models.Model):
+    category_name = models.CharField(max_length=100, unique=True)
+
 class Product(models.Model):
     product_name = models.CharField(max_length=100, unique=True)
     product_url = models.URLField(max_length=200, unique=True)
     product_img = models.URLField(max_length=200, unique=True)
     product_nutriscore = models.CharField(max_length=1)
+    product_category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     
 
 class Nutriments(models.Model):
@@ -24,5 +28,5 @@ class User(models.Model):
     user_name = models.CharField(max_length=50)
     user_mail = models.EmailField(max_length=100, unique=True)
     user_password = models.CharField(max_length=60)
-    user_product = models.ManyToManyField(Product, related_name='product', blank=True)
+    user_product = models.ManyToManyField(Product)
 

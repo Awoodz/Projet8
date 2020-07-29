@@ -7,3 +7,8 @@ pur_beurre_project/webapp/migrations/__pycache__/
 pur_beurre_project/essai.py
 pur_beurre_project/fonctions_temp.py
 pur_beurre_project/webapp/utilities/__pycache__
+pur_beurre_project/webapp/utilities/api/__pycache__/
+pur_beurre_project/webapp/utilities/api/externals/__pycache__/
+pur_beurre_project/webapp/utilities/sql/__pycache__/
+pur_beurre_project/webapp/management/__pycache__
+pur_beurre_project/webapp/management/commands/__pycache__

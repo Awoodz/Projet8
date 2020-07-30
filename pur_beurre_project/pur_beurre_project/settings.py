@@ -28,7 +28,10 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ["https://vast-bastion-15394.herokuapp.com/"]
+ALLOWED_HOSTS = [
+    "https://vast-bastion-15394.herokuapp.com/",
+    "127.0.0.1",
+]
 
 
 # Application definition

@@ -16,8 +16,10 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
+from webapp import views
 
 urlpatterns = [
+    url(r'^$', views.index),
     url(r'^webapp/', include('webapp.urls')),
     url('admin/', admin.site.urls),
 ]

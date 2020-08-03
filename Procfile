@@ -1,3 +1,2 @@
-release: python manage.py migrate
-python manage.py dtb_builder
+release: ./release_tasks.sh
 web: gunicorn pur_beurre_project.wsgi --log-file -

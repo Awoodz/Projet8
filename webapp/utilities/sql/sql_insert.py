@@ -9,6 +9,8 @@ class Sql_insert():
 
 
     def product_inserter():
+        Product.objects.all().delete()
+        Nutriments.objects.all().delete()
         i = 0
         for elem in dt.CAT_LIST:
             category = Category(category_name=elem)

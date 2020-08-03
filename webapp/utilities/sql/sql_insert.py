@@ -31,7 +31,6 @@ class Sql_insert():
                         product_nutriscore=product_data.nutriscore,
                         product_category_id=category
                     )
-                    print(product_data.name)
                     product.save()
 
                     nutriments = Nutriments(

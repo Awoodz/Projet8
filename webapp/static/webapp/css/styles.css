@@ -32,6 +32,11 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a40;
+  --moules: #345A61;
+  --rooibos: #C45525;
+  --rigolo: #86EBE6;
+  --caramel: #DE9440;
+  --biscuit: #E8A75D;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -80,11 +85,13 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans", sans-serif;
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
 
 p {
+  font-family: "Scope One", sans-serif;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -6095,7 +6102,8 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #f4623a !important;
+  background-color: var(--rooibos) !important;
+  background-image: url(../img/photo1.jpg);
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -6155,7 +6163,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: var(--rigolo) !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -10033,7 +10041,7 @@ hr.light {
 
 #mainNav {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  background-color: #fff;
+  background-color: var(--rigolo);
   transition: background-color 0.2s ease;
 }
 #mainNav .navbar-brand {
@@ -10077,7 +10085,7 @@ hr.light {
   }
   #mainNav.navbar-scrolled {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    background-color: #fff;
+    background-color: var(--rigolo);
   }
   #mainNav.navbar-scrolled .navbar-brand {
     color: #212529;
@@ -10169,4 +10177,29 @@ header.masthead h1 {
 {
   height: 2em;
   width: 2em;
+}
+.pb_title
+{
+  font-family: "Open Sans", sans-serif;
+  color: white;
+}
+
+#contact_footer
+{
+  float: left;
+}
+
+#legal_mention
+{
+  float: left;
+}
+
+.contact_class
+{
+  background-color: var(--caramel);
+}
+
+#story
+{
+  text-align: center;
 }

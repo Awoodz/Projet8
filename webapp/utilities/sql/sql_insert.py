@@ -3,12 +3,15 @@ from webapp.utilities.api.requester import Requester
 import webapp.utilities.data as dt
 from webapp.models import Category, Product, Nutriments, User
 from django.db import DatabaseError, transaction
+import logging
 
 
 class Sql_insert():
 
 
     def product_inserter():
+
+        logger = logging.getLogger(__name__)
 
         Category.objects.all().delete()
         Product.objects.all().delete()
@@ -20,8 +23,8 @@ class Sql_insert():
             try:
                 with transaction.atomic():
                     category.save()
-            except DatabaseError:
-                print("category insertion error")
+            except DatabaseError as cat_error:
+                logger.error(cat_error)
                 pass
 
             id_list = Requester(elem).product_id_list
@@ -54,12 +57,15 @@ class Sql_insert():
                         nutriments.save()
                         i += 1
                         print(str(i) + " produit(s) ajouté(s)")
-                except DatabaseError:
-                    print("product insertion error")
+                except DatabaseError as prod_error:
+                    logger.error(prod_error)
                     pass
 
 
     def user_inserter(name, mail, password):
+
+        logger = logging.getLogger(__name__)
+
         user = User(
             user_name=name,
             user_mail=mail,
@@ -68,15 +74,18 @@ class Sql_insert():
         try:
             with transaction.atomic():
                 user.save()
-        except DatabaseError:
-            print("user insertion error")
+        except DatabaseError as user_error:
+            logger.error(user_error)
             pass
 
     def user_saved_product_inserter(user, product):
+
+        logger = logging.getLogger(__name__)
+
         user.user_product.add(product)
         try:
             with transaction.atomic():
                 user.save()
-        except DatabaseError:
-            print("save user>product error")
+        except DatabaseError as save_error:
+            logger.error(save_error)
             pass

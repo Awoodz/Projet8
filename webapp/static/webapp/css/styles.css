@@ -10065,7 +10065,7 @@ hr.light {
 @media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
-    background-color: transparent;
+    background-color: var(--rigolo);
   }
   #mainNav .navbar-brand {
     color: rgba(255, 255, 255, 0.7);
@@ -10177,21 +10177,12 @@ header.masthead h1 {
 {
   height: 2em;
   width: 2em;
+  margin-right: 1em;
 }
 .pb_title
 {
   font-family: "Open Sans", sans-serif;
   color: white;
-}
-
-#contact_footer
-{
-  float: left;
-}
-
-#legal_mention
-{
-  float: left;
 }
 
 .contact_class
@@ -10202,4 +10193,26 @@ header.masthead h1 {
 #story
 {
   text-align: center;
+}
+
+#remy_img
+{
+  width: 50%;
+  height: 50%;
+}
+
+#colette_img
+{
+  width: 25%;
+  height: 25%;
+}
+
+#legal_mention
+{
+  float: left;
+}
+
+#contact_footer
+{
+  float: left;
 }

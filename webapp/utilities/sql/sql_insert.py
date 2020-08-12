@@ -67,9 +67,9 @@ class Sql_insert():
         logger = logging.getLogger(__name__)
 
         user = User(
-            user_name=name,
-            user_mail=mail,
-            user_password=password
+            username=name,
+            email=mail,
+            password=password
         )
         try:
             with transaction.atomic():

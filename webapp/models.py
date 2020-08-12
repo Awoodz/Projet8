@@ -31,9 +31,9 @@ class Nutriments(models.Model):
 
 
 class User(models.Model):
-    user_name = models.CharField(max_length=50)
-    user_mail = models.EmailField(max_length=100, unique=True)
-    user_password = models.CharField(max_length=60)
+    username = models.CharField(max_length=50)
+    mail = models.EmailField(max_length=100, unique=True)
+    password = models.CharField(max_length=60)
     user_product = models.ManyToManyField(Product)
 
     def __str__(self):

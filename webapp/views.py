@@ -29,8 +29,8 @@ def base_show(request):
     return HttpResponse(template.render(request=request))
 
 def legal_mention(request):
-    message = "mentions légale ici"
-    return HttpResponse(message)
+    template = loader.get_template('webapp/legalmention.html')
+    return HttpResponse(template.render(request=request))
 
 def product(request):
     message = "page produit"

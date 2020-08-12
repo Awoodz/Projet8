@@ -10216,3 +10216,22 @@ header.masthead h1 {
 {
   float: left;
 }
+
+.middle_section
+{
+  height: 20em;
+  background-color: pink;
+}
+
+.legal_mention_section
+{
+  height: 50em;
+  background-color: var(--caramel);
+}
+
+.middle_text
+{
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50em;
+}

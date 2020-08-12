@@ -33,17 +33,17 @@ def legal_mention(request):
     return HttpResponse(template.render(request=request))
 
 def product(request):
-    message = "page produit"
-    return HttpResponse(message)
+    template = loader.get_template('webapp/product.html')
+    return HttpResponse(template.render(request=request))
 
 def account(request):
-    message = "page compte"
-    return HttpResponse(message)
+    template = loader.get_template('webapp/account.html')
+    return HttpResponse(template.render(request=request))
 
 def results(request):
-    message = "page résultat"
-    return HttpResponse(message)
+    template = loader.get_template('webapp/results.html')
+    return HttpResponse(template.render(request=request))
 
 def saved_products(request):
-    message = "produits sauvegardés"
-    return HttpResponse(message)
+    template = loader.get_template('webapp/saved_products.html')
+    return HttpResponse(template.render(request=request))

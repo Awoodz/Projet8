@@ -37,5 +37,5 @@ class User(models.Model):
     user_product = models.ManyToManyField(Product)
 
     def __str__(self):
-        return self.user_name
+        return self.username
 

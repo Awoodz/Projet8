@@ -83,10 +83,10 @@ class Sql_insert():
 
         logger = logging.getLogger(__name__)
 
-        user.user_product.add(product)
+        product.user_product.add(user)
         try:
             with transaction.atomic():
-                user.save()
+                product.save()
         except DatabaseError as save_error:
             logger.error(save_error)
             pass

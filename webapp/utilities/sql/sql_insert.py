@@ -1,7 +1,8 @@
 from webapp.utilities.api.product_data import Product_data
 from webapp.utilities.api.requester import Requester
 import webapp.utilities.data as dt
-from webapp.models import Category, Product, Nutriments, User
+from webapp.models import Category, Product, Nutriments
+from django.contrib.auth.models import User
 from django.db import DatabaseError, transaction
 import logging
 
@@ -66,10 +67,10 @@ class Sql_insert():
 
         logger = logging.getLogger(__name__)
 
-        user = User(
-            username=name,
-            email=mail,
-            password=password
+        user = User.objects.create_user(
+            name,
+            mail,
+            password
         )
         try:
             with transaction.atomic():

@@ -16,21 +16,23 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.urls import path, include
 from webapp import views
 
 urlpatterns = [
-    url(r'^$', views.index),
-    url(r'^webapp/', include('webapp.urls')),
-    url('admin/', admin.site.urls),
-    url(r'^base/', views.base_show),
-    url(r'^legalmention/', views.legal_mention),
-    url(r'^results/', views.results),
-    url(r'^account/', views.account),
-    url(r'^product/', views.product),
-    url(r'^saved_products/', views.saved_products),
+    url(r"^$", views.index),
+    url(r"^webapp/", include("webapp.urls")),
+    url("admin/", admin.site.urls),
+    url(r"^base/", views.base_show),
+    url(r"^legalmention/", views.legal_mention),
+    url(r"^results/", views.results),
+    url(r"^account/", views.account),
+    url(r"^product/", views.product),
+    url(r"^saved_products/", views.saved_products),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
 
 import debug_toolbar
-urlpatterns = [
-    url(r'^__debug__/', include(debug_toolbar.urls)),
-] + urlpatterns
+
+urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)),] + urlpatterns
+

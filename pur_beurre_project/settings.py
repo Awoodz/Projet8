@@ -66,6 +66,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [],
         "APP_DIRS": True,
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -159,3 +160,5 @@ if os.environ.get("ENV") == "PRODUCTION":
 
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES["default"].update(db_from_env)
+
+LOGIN_REDIRECT_URL = "/"

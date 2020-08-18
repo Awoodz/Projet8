@@ -29,7 +29,7 @@ urlpatterns = [
     url(r"^account/", views.account),
     url(r"^product/", views.product),
     url(r"^saved_products/", views.saved_products),
-    # path("accounts/", include("accounts.urls")),
+    path("accounts/", include("webapp.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
 ]
 

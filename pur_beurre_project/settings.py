@@ -162,3 +162,4 @@ if os.environ.get("ENV") == "PRODUCTION":
     DATABASES["default"].update(db_from_env)
 
 LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"

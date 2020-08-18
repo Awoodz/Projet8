@@ -22,6 +22,7 @@ def index(request):
     # return HttpResponse(message)
 
 
+# this is a test
 # def listing(request):
 #     products = Product.objects.filter()
 #     formatted_products = ["<li>{}</li>".format(product.product_name) for product in products]

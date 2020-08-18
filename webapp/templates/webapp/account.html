@@ -1,104 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "webapp/base.html" %}
+{% block title %}Mon compte{% endblock %}
+{% block content %}
 {% load static %}
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="Pur beurre website" content="" />
-    <meta name="Amaury" content="" />
-    <title>Pur Beurre</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{% static 'webapp/img/favicon.png' %}" />
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
-    <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css" />
-    <!-- Third party plugin CSS-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
-        rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-
-    <link href="{% static 'webapp/css/styles.css' %}" rel="stylesheet" />
-</head>
-
-<body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-        <div class="container">
-            <div class="col-md-7">
-                <a class="navbar-brand js-scroll-trigger" href="/#page-top"><img id="logo_pb"
-                        src="{% static 'webapp/img/logo_pb.png' %}" />Pur Beurre</a>
-            </div>
-
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <li class="nav-item text-center">
-                        <div class="col-md-2">
-                            <form class="pb_form" method="GET">
-                                <input type="text" name="form_input" class="form_input"
-                                    placeholder="Recherchez un produit" />
-                            </form>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="col-md-1 text-center">
-                            <a class="nav-link js-scroll-trigger" href="/account">
-                                <img id="login_icon" src="{% static 'webapp/img/login.png' %}" />
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="col-md-1 text-center">
-                            <a class="nav-link js-scroll-trigger" href="/">
-                                <img id="carot_icon" src="{% static 'webapp/img/carot.png' %}" />
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="col-md-1 text-center">
-                            <a class="nav-link js-scroll-trigger" href="/">
-                                <img id="logoff_icon" src="{% static 'webapp/img/logoff.png' %}" />
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Section -->
-    <section class="page-section account_primary"></section>
-    <section class="middle_section">
-        <!-- templates/registration/login.html -->
-        <h2>Login</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Login</button>
-        </form>
-    </section>
-    <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="col-md-6 text-center" id="legal_mention">
-            <a href="/legalmention">Mentions légales</a>
-        </div>
-        <div class="col-md-6 text-center" id="contact_footer">
-            <a class="js-scroll-trigger" href="/#contact">Contact</a>
-        </div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-    <!-- Third party plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-    <!-- Core theme JS-->
-    {% load static %}
-    <script src="{% static 'webapp/js/scripts.js' %}"></script>
-</body>
-
-</html>
+<div class="account_top">
+    <div class="account_top_text">
+        Ahoy
+        {{ user.username }} !
+    </div>
+</div>
+<div class="account_bottom">
+    <div class="account_bottom_text">
+        Adresse mail
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+.account_top
+{
+    margin-top: 5em;
+    background-color: #DE9440;
+    height: 30em;
+    width: 100%;
+    display: table;
+    background-image: url(../img/photo2.jpg);
+}
+
+.account_top_text
+{
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.account_bottom
+{
+    background-color: white;
+    height: 20em;
+    width: 100%;
+    display: table;
+}
+
+.account_bottom_text
+{
+    color: black;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}

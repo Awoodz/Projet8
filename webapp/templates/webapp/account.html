@@ -2,15 +2,18 @@
 {% block title %}Mon compte{% endblock %}
 {% block content %}
 {% load static %}
-<div class="account_top">
+<link href="{% static 'webapp/css/account.css' %}" rel="stylesheet" />
+<section class="account_top">
     <div class="account_top_text">
-        Ahoy
-        {{ user.username }} !
+        <h1>
+            Ahoy <br />
+            {{ user.username }} !
+        </h1>
     </div>
-</div>
-<div class="account_bottom">
+</section>
+<section class="account_bottom">
     <div class="account_bottom_text">
-        Adresse mail
+        <h1>Adresse mail</h1>
     </div>
-</div>
+</section>
 {% endblock %}

@@ -8,4 +8,13 @@
   height: 25%;
 }
 
+.pb_title {
+  font-family: "Open Sans", sans-serif;
+  color: white;
+}
+
+#story {
+  text-align: center;
+}
+
 /*# sourceMappingURL=../css/index.css.map */

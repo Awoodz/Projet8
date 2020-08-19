@@ -6,4 +6,5 @@ from . import views
 
 urlpatterns = [
     path("signup/", views.SignUp.as_view(), name="signup"),
+    url(r"^(?P<product_id>[0-9]+)/$", views.test),
 ]

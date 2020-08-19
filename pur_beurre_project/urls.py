@@ -31,6 +31,7 @@ urlpatterns = [
     url(r"^saved_products/", views.saved_products),
     path("accounts/", include("webapp.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
+    url(r"^search/$", views.search),
 ]
 
 import debug_toolbar

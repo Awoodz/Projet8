@@ -14,3 +14,7 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ("username", "email")
 
+
+class SearchForm(forms.Form):
+    your_search = forms.CharField(label="Recherchez un produit", max_length=100)
+

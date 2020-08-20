@@ -5,6 +5,7 @@ from .forms import CustomUserCreationForm, SearchForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render
+from dal import autocomplete
 
 
 class SignUp(generic.CreateView):
@@ -55,6 +56,7 @@ def test(request, product_id):
 
 
 def search(request):
+    template = loader.get_template("webapp/search.html")
     query = request.GET.get("form_input")
     if not query:
         products = Product.objects.all()
@@ -65,7 +67,12 @@ def search(request):
     if not products.exists():
         message = "No result"
     else:
-        products = ["<li>{}</li>".format(product.product_name) for product in products]
+        products = [
+            "{} - nutriscore = {}".format(
+                product.product_name, product.product_nutriscore
+            )
+            for product in products
+        ]
         message = """
             Liste produits :
             <ul>{}</ul>
@@ -73,7 +80,7 @@ def search(request):
             "</li><li>".join(products)
         )
 
-    return HttpResponse(message)
+    return HttpResponse(template.render({"products": products}, request=request))
 
 
 def get_name(request):
@@ -93,4 +100,3 @@ def get_name(request):
         form = SearchForm()
 
     return render(request, "name.html", {"form": form})
-

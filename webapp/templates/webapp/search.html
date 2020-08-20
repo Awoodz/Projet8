@@ -2,4 +2,14 @@
 {% block title %}Mentions légales{% endblock %}
 {% block content %}
 {% load static %}
+<link href="{% static 'webapp/css/search.css' %}" rel="stylesheet" />
+<div class="search_body">
+    <div class="search_text">
+        <ul>
+            {% for product in products %}
+            <li>{{ product }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

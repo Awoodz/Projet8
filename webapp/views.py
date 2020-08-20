@@ -61,25 +61,15 @@ def search(request):
     if not query:
         products = Product.objects.all()
     else:
-        # title contains the query and query is not sensitive to case.
         products = Product.objects.filter(product_name__icontains=query)
 
     if not products.exists():
         message = "No result"
-    else:
-        products = [
-            "{} - nutriscore = {}".format(
-                product.product_name, product.product_nutriscore
-            )
-            for product in products
-        ]
-        message = """
-            Liste produits :
-            <ul>{}</ul>
-        """.format(
-            "</li><li>".join(products)
-        )
 
+    for product in products:
+        product.product_nutriscore = (
+            "static/webapp/img/nutri" + product.product_nutriscore + ".png"
+        )
     return HttpResponse(template.render({"products": products}, request=request))
 
 

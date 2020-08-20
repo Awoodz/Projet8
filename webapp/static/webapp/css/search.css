@@ -6,13 +6,29 @@
   display: table;
 }
 
-.search_text {
-  display: table-cell;
-  vertical-align: middle;
+.product_img {
+  width: 80%;
+  height: auto;
 }
 
-.hide {
-  display: none;
+.img_box {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.nutriscore_img {
+  position: absolute;
+  z-index: 1;
+  bottom: 15px;
+  left: 30px;
+  height: 3em;
+  width: auto;
+}
+
+.result_box {
+  background-color: rgba(255, 255, 255, 0.2);
+  float: left;
 }
 
 /*# sourceMappingURL=../css/search.css.map */

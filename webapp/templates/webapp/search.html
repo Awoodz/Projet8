@@ -4,12 +4,19 @@
 {% load static %}
 <link href="{% static 'webapp/css/search.css' %}" rel="stylesheet" />
 <div class="search_body">
-    <div class="search_text">
-        <ul>
-            {% for product in products %}
-            <li>{{ product }}</li>
-            {% endfor %}
-        </ul>
+    {% for product in products %}
+    <div class="col-md-4 result_box">
+        <div class="img_box">
+            <div>
+                <a href="{{ product.product_url }}"><img class="product_img" src="{{ product.product_img }}"
+                        alt="{{ product }}" /></a>
+            </div>
+
+            <img class="nutriscore_img" src="/{{ product.product_nutriscore }}" />
+        </div>
+        <a class="product_name" href="{{ product.product_url }}">{{ product }}</a>
+
     </div>
+    {% endfor %}
 </div>
 {% endblock %}

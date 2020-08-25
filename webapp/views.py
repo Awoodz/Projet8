@@ -5,6 +5,7 @@ from .forms import CustomUserCreationForm, SearchForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render
+from dal import autocomplete
 
 
 class SignUp(generic.CreateView):
@@ -72,20 +73,12 @@ def search(request):
     return HttpResponse(template.render({"products": products}, request=request))
 
 
-def get_name(request):
-    # if this is a POST request we need to process the form data
-    if request.method == "GET":
-        # create a form instance and populate it with data from the request:
-        form = SearchForm(request.GET)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect("/thanks/")
+class ProductAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = SearchForm()
+        request = Product.objects.all()
 
-    return render(request, "name.html", {"form": form})
+        if self.q:
+            request = request.filter(product_name__istartswith=self.q)
+
+        return request

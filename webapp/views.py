@@ -1,7 +1,7 @@
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from webapp.models import Category, Product, Nutriments, CustomUser
-from .forms import CustomUserCreationForm, SearchForm
+from .forms import CustomUserCreationForm, NameForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render
@@ -82,3 +82,8 @@ class ProductAutocomplete(autocomplete.Select2QuerySetView):
             request = request.filter(product_name__istartswith=self.q)
 
         return request
+
+
+def get_name(request):
+    form = NameForm()
+    return render(request, 'name.html', {'form': form})

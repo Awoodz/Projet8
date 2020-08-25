@@ -33,6 +33,7 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     url(r"^search/$", views.search),
     url(r'^product-autocomplete/$', views.ProductAutocomplete.as_view(),name='product-autocomplete',),
+    url(r"^name", views.get_name, name="name"),
 ]
 
 import debug_toolbar

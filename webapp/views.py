@@ -5,7 +5,6 @@ from .forms import CustomUserCreationForm, SearchForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render
-from dal import autocomplete
 
 
 class SignUp(generic.CreateView):

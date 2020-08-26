@@ -1,5 +1,4 @@
 .search_body {
-  margin-top: 5em;
   background-color: #DE9440;
   height: 40em;
   width: 100%;
@@ -31,4 +30,19 @@
   float: left;
 }
 
-/*# sourceMappingURL=../css/search.css.map */
+.search_top {
+  margin-top: 5em;
+  height: 30em;
+  width: 100%;
+  display: table;
+  background-color: #345A61;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.search_top_text {
+  color: white;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}

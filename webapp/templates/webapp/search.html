@@ -3,6 +3,16 @@
 {% block content %}
 {% load static %}
 <link href="{% static 'webapp/css/search.css' %}" rel="stylesheet" />
+{% for product in searched_product %}
+<link href="{% static 'webapp/css/account.css' %}" rel="stylesheet" />
+<section class="search_top" style="background-image: url({{ product.product_img }});">
+    <div class="search_top_text">
+        <h1>
+            {{ product.product_name }}
+        </h1>
+    </div>
+</section>
+{% endfor %}
 <div class="search_body">
     {% for product in products %}
     <div class="col-md-4 result_box">

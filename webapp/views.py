@@ -58,19 +58,26 @@ def test(request, product_id):
 def search(request):
     template = loader.get_template("webapp/search.html")
     query = request.GET.get("product_search")
-    if not query:
-        products = Product.objects.all()
-    else:
-        products = Product.objects.filter(id__icontains=query)
+    # if not query:
+    #     product = Product.objects.all()
+    # else:
 
-    if not products.exists():
-        message = "No result"
+    searched_product = Product.objects.filter(id__icontains=query)
 
-    for product in products:
-        product.product_nutriscore = (
+    for picked_product in searched_product:
+        products = Product.objects.filter(product_category_id=picked_product.product_category_id).order_by("product_nutriscore")
+        for product in products:
+            product.product_nutriscore = (
             "static/webapp/img/nutri" + product.product_nutriscore + ".png"
-        )
-    return HttpResponse(template.render({"products": products}, request=request))
+            )
+
+
+    # if not products.exists():
+    #     message = "No result"
+
+
+
+    return HttpResponse(template.render({"searched_product": searched_product, "products": products}, request=request))
 
 
 class ProductAutocomplete(autocomplete.Select2QuerySetView):

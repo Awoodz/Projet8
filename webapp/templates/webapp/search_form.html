@@ -1,0 +1,52 @@
+{% load static %}
+
+{% block content %}
+<div style="height: 50em; display: table;">
+    <div style="display: table-cell; vertical-align: middle; text-align: center;">
+        <form action="/search" method="get">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <table style="display: none">
+                {{ view.formset.empty_form }}
+            </table>
+
+            <table>
+                {{ view.formset }}
+            </table>
+
+            <span id="add-form" class="button">Add form</span>
+
+            <input type="submit" />
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+{{ form.media }}
+
+<script>
+(function($) {
+    $('#add-form').click(function() {
+        var index = $('#id_inline_test_models-TOTAL_FORMS').val()
+        var newTable = $('#id_inline_test_models-__prefix__-DELETE').parents('table').clone()
+        newTable.find(':input').each(function() {
+            for (attr of ['name', 'id'])
+                $(this).attr(
+                    attr,
+                    $(this).attr(attr).replace('__prefix__', index)
+                )
+        })
+        newTable.insertBefore($(this))
+        $('#id_inline_test_models-TOTAL_FORMS').val(
+            parseInt($('#id_inline_test_models-TOTAL_FORMS').val()) + 1
+        )
+        newTable.slideDown()
+    })
+})($)
+</script>
+{% endblock %}

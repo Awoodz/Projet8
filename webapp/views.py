@@ -1,7 +1,7 @@
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from webapp.models import Category, Product, Nutriments, CustomUser
-from .forms import CustomUserCreationForm, NameForm
+from .forms import CustomUserCreationForm, ProductForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render
@@ -57,11 +57,11 @@ def test(request, product_id):
 
 def search(request):
     template = loader.get_template("webapp/search.html")
-    query = request.GET.get("form_input")
+    query = request.GET.get("product_search")
     if not query:
         products = Product.objects.all()
     else:
-        products = Product.objects.filter(product_name__icontains=query)
+        products = Product.objects.filter(id__icontains=query)
 
     if not products.exists():
         message = "No result"
@@ -84,6 +84,6 @@ class ProductAutocomplete(autocomplete.Select2QuerySetView):
         return request
 
 
-def get_name(request):
-    form = NameForm()
-    return render(request, 'name.html', {'form': form})
+class ProductView(generic.FormView):
+    template_name = 'webapp/search_form.html'
+    form_class = ProductForm

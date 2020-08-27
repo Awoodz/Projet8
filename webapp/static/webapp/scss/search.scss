@@ -6,35 +6,44 @@
     display: table;
 }
 
+.result_box
+{
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 1em;
+    text-align: center;
+    height:25em;
+    width: auto;
+}
+
 .product_img
 {
-    width: 80%;
-    height: 80%;
+    height:15em;
+    width: auto;
+    margin: 1em;
+    display: inline-block;
 }
 
 .img_box
 {   
-    background-color:rgba(255, 255, 255, 0.2);
+    background-color: #345A61;
+    margin: 1em;
+    display: inline-block;
+}
+
+.img_score
+{
     display: inline-block;
     position: relative;
     z-index: 1;
 }
-
 .nutriscore_img
 {
     position: absolute;
     z-index: 1;
-    top: 15px;
-    right: 30px;
+    top: -1em;
+    right: -2em;
     height: auto;
     width: auto;
-    
-}
-
-.result_box
-{
-    background-color:rgba(255, 255, 255, 0.2);
-    float: left;
 }
 
 .search_top

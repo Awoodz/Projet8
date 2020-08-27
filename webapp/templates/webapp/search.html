@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 <link href="{% static 'webapp/css/search.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- Top section -->
 {% for product in searched_product %}
@@ -18,24 +19,33 @@
 <!-- Result section -->
 <div class="search_body">
     {% for product in products %}
-    <div class="col-md-4 result_box">
-        <div class="img_box">
-            <div>
-                <a href="{{ product.product_url }}"><img class="product_img" src="{{ product.product_img }}"
-                        alt="{{ product }}" /></a>
-            </div>
-
-            <div class="nutriscore_img">
-                <div class="nutriscore_ring">
-                    <div class="nutriscore_letter">
-                        {{ product.product_nutriscore }}
+    <div class="col-md-4" style="float: left">
+        <!-- image block -->
+        <div class="result_box">
+            <div class="img_box">
+                <div class="img_score">
+                    <div>
+                        <a href="{{ product.product_url }}"><img class="product_img" src="{{ product.product_img }}"
+                                alt="{{ product }}" /></a>
+                    </div>
+                    <div class="nutriscore_img">
+                        <div class="nutriscore_ring">
+                            <div class="nutriscore_letter">
+                                {{ product.product_nutriscore }}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
             </div>
-        </div>
-        <div class="name_box">
-            <a class="product_name" href="{{ product.product_url }}">{{ product }}</a>
+            <div class="name_box">
+                <h3><a class="product_name" href="{{ product.product_url }}">{{ product }}</a></h3>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="save_box">
+            </div>
+            {% else %}
+            <div> Connectez vous pour sauvegarder un substitut</div>
+            {% endif %}
         </div>
     </div>
     {% endfor %}

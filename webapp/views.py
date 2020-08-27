@@ -97,3 +97,7 @@ class ProductAutocomplete(autocomplete.Select2QuerySetView):
 class ProductView(generic.FormView):
     template_name = 'webapp/search_form.html'
     form_class = ProductForm
+
+def save_product(request, product, user):
+    product.user_product.add(user)
+    product.save()

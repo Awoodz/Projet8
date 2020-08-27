@@ -65,19 +65,22 @@ def search(request):
     searched_product = Product.objects.filter(id__icontains=query)
 
     for picked_product in searched_product:
-        products = Product.objects.filter(product_category_id=picked_product.product_category_id).order_by("product_nutriscore")
-        for product in products:
-            product.product_nutriscore = (
-            "static/webapp/img/nutri" + product.product_nutriscore + ".png"
-            )
-
+        products = Product.objects.filter(
+            product_category_id=picked_product.product_category_id
+        ).order_by("product_nutriscore")
 
     # if not products.exists():
     #     message = "No result"
 
-
-
-    return HttpResponse(template.render({"searched_product": searched_product, "products": products}, request=request))
+    return HttpResponse(
+        template.render(
+            {
+                "searched_product": searched_product,
+                "products": products
+            },
+            request=request
+        )
+    )
 
 
 class ProductAutocomplete(autocomplete.Select2QuerySetView):

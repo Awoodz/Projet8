@@ -3,8 +3,9 @@
 {% block content %}
 {% load static %}
 <link href="{% static 'webapp/css/search.css' %}" rel="stylesheet" />
+
+<!-- Top section -->
 {% for product in searched_product %}
-<link href="{% static 'webapp/css/account.css' %}" rel="stylesheet" />
 <section class="search_top" style="background-image: url({{ product.product_img }});">
     <div class="search_top_text">
         <h1>
@@ -13,6 +14,8 @@
     </div>
 </section>
 {% endfor %}
+
+<!-- Result section -->
 <div class="search_body">
     {% for product in products %}
     <div class="col-md-4 result_box">
@@ -22,11 +25,20 @@
                         alt="{{ product }}" /></a>
             </div>
 
-            <img class="nutriscore_img" src="/{{ product.product_nutriscore }}" />
+            <div class="nutriscore_img">
+                <div class="nutriscore_ring">
+                    <div class="nutriscore_letter">
+                        {{ product.product_nutriscore }}
+                    </div>
+                </div>
+                
+            </div>
         </div>
-        <a class="product_name" href="{{ product.product_url }}">{{ product }}</a>
-
+        <div class="name_box">
+            <a class="product_name" href="{{ product.product_url }}">{{ product }}</a>
+        </div>
     </div>
     {% endfor %}
 </div>
+<script src="{% static 'webapp/js/nutriscore.js' %}"></script>
 {% endblock %}

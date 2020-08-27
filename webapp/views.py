@@ -14,14 +14,9 @@ class SignUp(generic.CreateView):
     template_name = "webapp/signup.html"
 
 
-def index(request):
-    template = loader.get_template("webapp/index.html")
-    return HttpResponse(template.render(request=request))
-
-
-def base_show(request):
-    template = loader.get_template("webapp/base.html")
-    return HttpResponse(template.render(request=request))
+class IndexView(generic.FormView):
+    template_name = 'webapp/index.html'
+    form_class = ProductForm
 
 
 def legal_mention(request):
@@ -59,14 +54,14 @@ def search(request):
     template = loader.get_template("webapp/search.html")
     query = request.GET.get("product_search")
 
-    searched_product = Product.objects.filter(id__icontains=query)
+    searched_product = Product.objects.filter(id=query)
 
     for picked_product in searched_product:
         products = Product.objects.filter(
             product_category_id=picked_product.product_category_id
         ).order_by("product_nutriscore")
 
-    if request.POST.get('save'):
+    if request.GET.get('save_button'):
         print('user clicked summary')
 
     return HttpResponse(
@@ -95,6 +90,10 @@ class ProductView(generic.FormView):
     template_name = 'webapp/search_form.html'
     form_class = ProductForm
 
-def save_product(request, product, user):
-    product.user_product.add(user)
-    product.save()
+
+def save_product(request):
+    product = request.GET.get('product_id')
+    print(product)
+    # user = request.GET.get('user_id')
+    # product.user_product.add(user)
+    # product.save()

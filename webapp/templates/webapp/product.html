@@ -14,17 +14,7 @@
     <div class="col-md-6" style="float: left;">
 
         <div class="nutriscore_char">
-            {% if product.product_nutriscore == "a" %}
-            <img class="nutri_png" src="{% static 'webapp/img/nutria.png' %}"/>
-            {% elif product.product_nutriscore == "b" %}
-            <img class="nutri_png" src="{% static 'webapp/img/nutrib.png' %}"/>
-            {% elif product.product_nutriscore == "c" %}
-            <img class="nutri_png" src="{% static 'webapp/img/nutric.png' %}"/>
-            {% elif product.product_nutriscore == "d" %}
-            <img class="nutri_png" src="{% static 'webapp/img/nutrid.png' %}"/>
-            {% elif product.product_nutriscore == "e" %}
-            <img class="nutri_png" src="{% static 'webapp/img/nutrie.png' %}"/>
-            {% endif %}
+            <img class="nutri_png" src="{% static 'webapp/img/' %}nutri{{ product.product_nutriscore}}.png" />
         </div>
 
     </div>

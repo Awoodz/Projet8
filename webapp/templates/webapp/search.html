@@ -29,8 +29,8 @@
                                 alt="{{ product }}" /></a>
                     </div>
                     <div class="nutriscore_img">
-                        <div class="nutriscore_ring">
-                            <div class="nutriscore_letter">
+                        <div class="nutriscore_ring nutriscore_ring_{{ product.product_nutriscore }}">
+                            <div class="nutriscore_char">
                                 {{ product.product_nutriscore }}
                             </div>
                         </div>
@@ -42,8 +42,9 @@
             </div>
             {% if user.is_authenticated %}
             <div class="save_box">
-                <input type="submit" style="font-size:1em" value="edit" name="save" />
-                <!-- Sauvegarder <i class="fa fa-floppy-o"></i></input> -->
+                <form method="GET">
+                    <button type="submit" class="fa fa-floppy-o" name="save_product"></button>
+                </form>
             </div>
             {% else %}
             <div> Connectez vous pour sauvegarder un substitut</div>
@@ -52,5 +53,4 @@
     </div>
     {% endfor %}
 </div>
-<!-- <script src="{% static 'webapp/js/nutriscore.js' %}"></script> -->
 {% endblock %}

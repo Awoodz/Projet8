@@ -20,10 +20,9 @@ from django.urls import path, include
 from webapp import views
 
 urlpatterns = [
-    url(r"^$", views.index),
+    url(r"^$", views.IndexView.as_view()),
     url(r"^webapp/", include("webapp.urls")),
     url("admin/", admin.site.urls),
-    url(r"^base/", views.base_show),
     url(r"^legalmention/", views.legal_mention),
     url(r"^account/", views.account),
     url(r"^saved_products/", views.saved_products),

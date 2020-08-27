@@ -73,7 +73,7 @@
     display: table;
 }
 
-.nutriscore_letter
+.nutriscore_char
 {
     display: table-cell;
     vertical-align: middle;
@@ -83,52 +83,48 @@
     text-transform: uppercase;
 }
 
-.nutriscore_letter_a
-{
-    color: #088A08
-}
 
 .nutriscore_ring_a
 {
-    border: 0.5em solid #088A08
-}
-
-.nutriscore_letter_b
-{
-    color: #9AFE2E
+    border: 0.5em solid #088A08;
+    .nutriscore_char
+    {
+        color: #088A08
+    }
 }
 
 .nutriscore_ring_b
 {
-    border: 0.5em solid #9AFE2E
-}
-
-.nutriscore_letter_c
-{
-    color: #FFBF00
+    border: 0.5em solid #9AFE2E;
+    .nutriscore_char
+    {
+        color: #9AFE2E
+    }
 }
 
 .nutriscore_ring_c
 {
-    border: 0.5em solid #FFBF00
-}
-
-.nutriscore_letter_d
-{
-    color: #C55302
+    border: 0.5em solid #FFBF00;
+    .nutriscore_char
+    {
+        color: #FFBF00
+    }
 }
 
 .nutriscore_ring_d
 {
-    border: 0.5em solid #C55302
-}
-
-.nutriscore_letter_e
-{
-    color: #FF0000
+    border: 0.5em solid #C55302;
+    .nutriscore_char
+    {
+        color: #C55302
+    }
 }
 
 .nutriscore_ring_e
 {
-    border: 0.5em solid #FF0000
+    border: 0.5em solid #FF0000;
+    .nutriscore_char
+    {
+        color: #FF0000
+    }
 }

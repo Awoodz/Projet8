@@ -25,15 +25,14 @@ urlpatterns = [
     url("admin/", admin.site.urls),
     url(r"^base/", views.base_show),
     url(r"^legalmention/", views.legal_mention),
-    url(r"^results/", views.results),
     url(r"^account/", views.account),
-    url(r"^product/", views.product),
     url(r"^saved_products/", views.saved_products),
     path("accounts/", include("webapp.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     url(r"^search/$", views.search),
     url(r'^autocomplete/$', views.ProductAutocomplete.as_view(), name='autocomplete',),
     url(r'^search_form/$', views.ProductView.as_view()),
+    url(r"^product/(?P<product_id>[0-9]+)/$", views.product),
 ]
 
 import debug_toolbar

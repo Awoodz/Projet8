@@ -25,7 +25,7 @@
             <div class="img_box">
                 <div class="img_score">
                     <div>
-                        <a href="{{ product.product_url }}"><img class="product_img" src="{{ product.product_img }}"
+                        <a href="/product/{{ product.id }}/"><img class="product_img" src="{{ product.product_img }}"
                                 alt="{{ product }}" /></a>
                     </div>
                     <div class="nutriscore_img">
@@ -38,10 +38,12 @@
                 </div>
             </div>
             <div class="name_box">
-                <h3><a class="product_name" href="{{ product.product_url }}">{{ product }}</a></h3>
+                <h3><a class="product_name" href="/product/{{ product.id }}/">{{ product }}</a></h3>
             </div>
             {% if user.is_authenticated %}
             <div class="save_box">
+                <input type="submit" style="font-size:1em" value="edit" name="save" />
+                <!-- Sauvegarder <i class="fa fa-floppy-o"></i></input> -->
             </div>
             {% else %}
             <div> Connectez vous pour sauvegarder un substitut</div>
@@ -50,5 +52,5 @@
     </div>
     {% endfor %}
 </div>
-<script src="{% static 'webapp/js/nutriscore.js' %}"></script>
+<!-- <script src="{% static 'webapp/js/nutriscore.js' %}"></script> -->
 {% endblock %}

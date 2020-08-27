@@ -29,18 +29,8 @@ def legal_mention(request):
     return HttpResponse(template.render(request=request))
 
 
-def product(request):
-    template = loader.get_template("webapp/product.html")
-    return HttpResponse(template.render(request=request))
-
-
 def account(request):
     template = loader.get_template("webapp/account.html")
-    return HttpResponse(template.render(request=request))
-
-
-def results(request):
-    template = loader.get_template("webapp/results.html")
     return HttpResponse(template.render(request=request))
 
 
@@ -49,18 +39,25 @@ def saved_products(request):
     return HttpResponse(template.render(request=request))
 
 
-def test(request, product_id):
+def product(request, product_id):
+    template = loader.get_template("webapp/product.html")
     product = Product.objects.get(pk=product_id)
-    message = "le nom du produit est {}".format(product.product_name)
-    return HttpResponse(message)
+    nutriment = Nutriments.objects.get(nutriments_product_id=product_id)
+
+    return HttpResponse(
+        template.render(
+            {
+                "product": product,
+                "nutriment": nutriment
+            },
+            request=request
+        )
+    )
 
 
 def search(request):
     template = loader.get_template("webapp/search.html")
     query = request.GET.get("product_search")
-    # if not query:
-    #     product = Product.objects.all()
-    # else:
 
     searched_product = Product.objects.filter(id__icontains=query)
 
@@ -69,8 +66,8 @@ def search(request):
             product_category_id=picked_product.product_category_id
         ).order_by("product_nutriscore")
 
-    # if not products.exists():
-    #     message = "No result"
+    if request.POST.get('save'):
+        print('user clicked summary')
 
     return HttpResponse(
         template.render(

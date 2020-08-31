@@ -42,18 +42,17 @@
             </div>
             {% if user.is_authenticated %}
             <div class="save_box">
-                <form action="/save_product" method="get">
-                <!-- <form action="/save_product" method="get" class="save_form"> -->
+                <form class="save_form">
                     {% csrf_token %}
                     {{ form }}
                     <input type="hidden" name="product_token" value="{{ product.id }}">
                     <input type="hidden" name="user_token" value="{{ user.id }}">
                     <button type="submit" class="fa fa-floppy-o" name="save_product"></button>
                 </form>
-            <!-- <script>
+            <script>
                 $('.save_form').on('submit', function(event){
-                    console.log("woooow !")
                     event.preventDefault();
+                    var serializedData = $(this).serialize();
                     $.ajax({
                         type: 'GET',
                         url: "{% url 'save_product' %}",
@@ -65,7 +64,7 @@
                         }
                     });
                 });
-            </script> -->
+            </script>
             </div>
             {% else %}
             <div> Connectez vous pour sauvegarder un substitut</div>

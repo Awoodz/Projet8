@@ -42,9 +42,30 @@
             </div>
             {% if user.is_authenticated %}
             <div class="save_box">
-                <form method="GET">
+                <form action="/save_product" method="get">
+                <!-- <form action="/save_product" method="get" class="save_form"> -->
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="hidden" name="product_token" value="{{ product.id }}">
+                    <input type="hidden" name="user_token" value="{{ user.id }}">
                     <button type="submit" class="fa fa-floppy-o" name="save_product"></button>
                 </form>
+            <!-- <script>
+                $('.save_form').on('submit', function(event){
+                    console.log("woooow !")
+                    event.preventDefault();
+                    $.ajax({
+                        type: 'GET',
+                        url: "{% url 'save_product' %}",
+                        data: serializedData,
+                        success: function (response) {
+                            // on successfull creating object
+                            // 1. clear the form.
+                            $(".save_form").trigger('reset');
+                        }
+                    });
+                });
+            </script> -->
             </div>
             {% else %}
             <div> Connectez vous pour sauvegarder un substitut</div>

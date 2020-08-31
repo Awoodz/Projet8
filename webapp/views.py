@@ -1,6 +1,7 @@
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from webapp.models import Category, Product, Nutriments, CustomUser
+from webapp.utilities.sql.sql_insert import Sql_insert
 from .forms import CustomUserCreationForm, ProductForm
 from django.urls import reverse_lazy
 from django.views import generic
@@ -92,8 +93,12 @@ class ProductView(generic.FormView):
 
 
 def save_product(request):
-    product = request.GET.get('product_id')
-    print(product)
-    # user = request.GET.get('user_id')
-    # product.user_product.add(user)
-    # product.save()
+    get_product_id = request.GET.get("product_token")
+    get_user_id = request.GET.get("user_token")
+
+    product = Product.objects.get(pk=get_product_id)
+    user = CustomUser.objects.get(pk=get_user_id)
+
+    Sql_insert.user_saved_product_inserter(product, user)
+
+    return HttpResponse("Vous n'avez rien à faire ici")

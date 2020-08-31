@@ -79,7 +79,7 @@ class Sql_insert():
             logger.error(user_error)
             pass
 
-    def user_saved_product_inserter(user, product):
+    def user_saved_product_inserter(product, user):
 
         logger = logging.getLogger(__name__)
 

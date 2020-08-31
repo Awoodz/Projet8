@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^autocomplete/$', views.ProductAutocomplete.as_view(), name='autocomplete',),
     url(r'^search_form/$', views.ProductView.as_view()),
     url(r"^product/(?P<product_id>[0-9]+)/$", views.product),
+    url(r"^save_product/$", views.save_product, name="save_product"),
 ]
 
 import debug_toolbar

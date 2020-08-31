@@ -50,9 +50,13 @@
 
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
-                            <a class="nav-link js-scroll-trigger" href="/">
-                                <img id="carot_icon" src="{% static 'webapp/img/carot.png' %}" />
-                            </a>
+                            <a class="nav-link js-scroll-trigger">
+                                <form action="{% url 'saved_products' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                                    <input type="image" id="carot_icon" src="{% static 'webapp/img/carot.png' %}" />
+                                </form>  
+                            </a> 
                         </div>
                     </li>
                     <li class="nav-item">

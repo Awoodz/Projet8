@@ -32,7 +32,16 @@ def account(request):
 
 def saved_products(request):
     template = loader.get_template("webapp/saved_products.html")
-    return HttpResponse(template.render(request=request))
+    get_user_id = request.GET.get("user_id")
+    products = Product.objects.filter(user_product=get_user_id)
+    return HttpResponse(
+        template.render(
+            {
+                "products": products
+            },
+            request=request
+        )
+    )
 
 
 def product(request, product_id):
@@ -61,9 +70,6 @@ def search(request):
         products = Product.objects.filter(
             product_category_id=picked_product.product_category_id
         ).order_by("product_nutriscore")
-
-    if request.GET.get('save_button'):
-        print('user clicked summary')
 
     return HttpResponse(
         template.render(

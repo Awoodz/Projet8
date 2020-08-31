@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from webapp import views
 
 urlpatterns = [
@@ -25,7 +25,7 @@ urlpatterns = [
     url("admin/", admin.site.urls),
     url(r"^legalmention/", views.legal_mention),
     url(r"^account/", views.account),
-    url(r"^saved_products/", views.saved_products),
+    url(r"^saved_products/", views.saved_products, name="saved_products"),
     path("accounts/", include("webapp.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     url(r"^search/$", views.search),
@@ -37,5 +37,4 @@ urlpatterns = [
 
 import debug_toolbar
 
-urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)),] + urlpatterns
-
+urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)), ] + urlpatterns

@@ -1,4 +1,5 @@
 from webapp.utilities.api.externals.openfoodfact_request import Openfoodfact_request
+import webapp.utilities.data as dt
 
 
 class Requester():
@@ -11,7 +12,7 @@ class Requester():
 
         product_id_list = []
         i = 0
-        while i < 3:
+        while i < dt.MAX_PAGE:
             category_data = Openfoodfact_request.category_request(category, i)
             i += 1
             for dictionnary in category_data["products"]:
@@ -20,5 +21,5 @@ class Requester():
 
     def product_data_requester(product_id):
 
-            product_data = Openfoodfact_request.product_request(product_id)
-            return product_data
+        product_data = Openfoodfact_request.product_request(product_id)
+        return product_data

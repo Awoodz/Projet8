@@ -39,20 +39,9 @@ def account(request):
     return HttpResponse(template.render(request=request))
 
 
-def results(request):
-    template = loader.get_template("webapp/results.html")
-    return HttpResponse(template.render(request=request))
-
-
 def saved_products(request):
     template = loader.get_template("webapp/saved_products.html")
     return HttpResponse(template.render(request=request))
-
-
-def test(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    message = "le nom du produit est {}".format(product.product_name)
-    return HttpResponse(message)
 
 
 def search(request):
@@ -72,21 +61,3 @@ def search(request):
         )
     return HttpResponse(template.render({"products": products}, request=request))
 
-
-def get_name(request):
-    # if this is a POST request we need to process the form data
-    if request.method == "GET":
-        # create a form instance and populate it with data from the request:
-        form = SearchForm(request.GET)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect("/thanks/")
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = SearchForm()
-
-    return render(request, "name.html", {"form": form})

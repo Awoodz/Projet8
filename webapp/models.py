@@ -18,7 +18,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=100)
+    product_name = models.CharField(max_length=100, unique=True)
     product_url = models.URLField(max_length=200, unique=True)
     product_img = models.URLField(max_length=200)
     product_nutriscore = models.CharField(max_length=10)

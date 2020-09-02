@@ -20,6 +20,17 @@ class Sql_insert():
         
         i = 0
         for elem in dt.CAT_LIST:
+            print(elem)
+            # For each caracters in category name
+            j = 0
+            while j < len(dt.LIST_ACCENT):
+                # Replace some characters with others, so we can use it in API
+                elem = elem.replace(
+                    dt.LIST_ACCENT[j],
+                    dt.LIST_NO_ACC[j]
+                )
+                j += 1
+            print(elem)
             category = Category(category_name=elem)
             try:
                 with transaction.atomic():
@@ -79,7 +90,7 @@ class Sql_insert():
             logger.error(user_error)
             pass
 
-    def user_saved_product_inserter(user, product):
+    def user_saved_product_inserter(product, user):
 
         logger = logging.getLogger(__name__)
 

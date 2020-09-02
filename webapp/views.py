@@ -1,7 +1,8 @@
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from webapp.models import Category, Product, Nutriments, CustomUser
-from .forms import CustomUserCreationForm, SearchForm
+from webapp.utilities.sql.sql_insert import Sql_insert
+from .forms import CustomUserCreationForm, ProductForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.shortcuts import render
@@ -14,23 +15,13 @@ class SignUp(generic.CreateView):
     template_name = "webapp/signup.html"
 
 
-def index(request):
-    template = loader.get_template("webapp/index.html")
-    return HttpResponse(template.render(request=request))
-
-
-def base_show(request):
-    template = loader.get_template("webapp/base.html")
-    return HttpResponse(template.render(request=request))
+class IndexView(generic.FormView):
+    template_name = 'webapp/index.html'
+    form_class = ProductForm
 
 
 def legal_mention(request):
     template = loader.get_template("webapp/legalmention.html")
-    return HttpResponse(template.render(request=request))
-
-
-def product(request):
-    template = loader.get_template("webapp/product.html")
     return HttpResponse(template.render(request=request))
 
 
@@ -41,23 +32,87 @@ def account(request):
 
 def saved_products(request):
     template = loader.get_template("webapp/saved_products.html")
-    return HttpResponse(template.render(request=request))
+    get_user_id = request.GET.get("user_id")
+    products = Product.objects.filter(user_product=get_user_id)
+    return HttpResponse(
+        template.render(
+            {
+                "products": products
+            },
+            request=request
+        )
+    )
 
 
+<<<<<<< HEAD
+=======
+def product(request, product_id):
+    template = loader.get_template("webapp/product.html")
+    product = Product.objects.get(pk=product_id)
+    nutriment = Nutriments.objects.get(nutriments_product_id=product_id)
+
+    return HttpResponse(
+        template.render(
+            {
+                "product": product,
+                "nutriment": nutriment
+            },
+            request=request
+        )
+    )
+
+
+>>>>>>> c6d0c52ec0ae0e8d84e03fb91ecdf66189c5c41f
 def search(request):
     template = loader.get_template("webapp/search.html")
-    query = request.GET.get("form_input")
-    if not query:
-        products = Product.objects.all()
-    else:
-        products = Product.objects.filter(product_name__icontains=query)
+    query = request.GET.get("product_search")
 
-    if not products.exists():
-        message = "No result"
+    searched_product = Product.objects.filter(id=query)
 
-    for product in products:
-        product.product_nutriscore = (
-            "static/webapp/img/nutri" + product.product_nutriscore + ".png"
+    for picked_product in searched_product:
+        products = Product.objects.filter(
+            product_category_id=picked_product.product_category_id
+        ).order_by("product_nutriscore")
+
+    return HttpResponse(
+        template.render(
+            {
+                "searched_product": searched_product,
+                "products": products
+            },
+            request=request
         )
+<<<<<<< HEAD
     return HttpResponse(template.render({"products": products}, request=request))
 
+=======
+    )
+
+
+class ProductAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+
+        request = Product.objects.all()
+
+        if self.q:
+            request = request.filter(product_name__istartswith=self.q)
+
+        return request
+
+
+class ProductView(generic.FormView):
+    template_name = 'webapp/search_form.html'
+    form_class = ProductForm
+
+
+def save_product(request):
+    get_product_id = request.GET.get("product_token")
+    get_user_id = request.GET.get("user_token")
+
+    product = Product.objects.get(pk=get_product_id)
+    user = CustomUser.objects.get(pk=get_user_id)
+
+    Sql_insert.user_saved_product_inserter(product, user)
+
+    return HttpResponse("Vous n'avez rien à faire ici")
+>>>>>>> c6d0c52ec0ae0e8d84e03fb91ecdf66189c5c41f

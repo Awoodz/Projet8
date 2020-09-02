@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "webapp.apps.WebappConfig",
     "django_sass",
+    "dal",
+    "dal_select2",
 ]
 
 MIDDLEWARE = [

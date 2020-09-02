@@ -3,19 +3,73 @@
 {% block content %}
 {% load static %}
 <link href="{% static 'webapp/css/search.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Top section -->
+{% for product in searched_product %}
+<section class="search_top" style="background-image: url({{ product.product_img }});">
+    <div class="search_top_text">
+        <h1>
+            {{ product.product_name }}
+        </h1>
+    </div>
+</section>
+{% endfor %}
+
+<!-- Result section -->
 <div class="search_body">
     {% for product in products %}
-    <div class="col-md-4 result_box">
-        <div class="img_box">
-            <div>
-                <a href="{{ product.product_url }}"><img class="product_img" src="{{ product.product_img }}"
-                        alt="{{ product }}" /></a>
+    <div class="col-md-4" style="float: left">
+        <!-- image block -->
+        <div class="result_box">
+            <div class="img_box">
+                <div class="img_score">
+                    <div>
+                        <a href="/product/{{ product.id }}/"><img class="product_img" src="{{ product.product_img }}"
+                                alt="{{ product }}" /></a>
+                    </div>
+                    <div class="nutriscore_img">
+                        <div class="nutriscore_ring nutriscore_ring_{{ product.product_nutriscore }}">
+                            <div class="nutriscore_char">
+                                {{ product.product_nutriscore }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <img class="nutriscore_img" src="/{{ product.product_nutriscore }}" />
+            <div class="name_box">
+                <h3><a class="product_name" href="/product/{{ product.id }}/">{{ product }}</a></h3>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="save_box">
+                <form class="save_form">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="hidden" name="product_token" value="{{ product.id }}">
+                    <input type="hidden" name="user_token" value="{{ user.id }}">
+                    <button type="submit" class="fa fa-floppy-o" name="save_product"></button>
+                </form>
+            <script>
+                $('.save_form').on('submit', function(event){
+                    event.preventDefault();
+                    var serializedData = $(this).serialize();
+                    $.ajax({
+                        type: 'GET',
+                        url: "{% url 'save_product' %}",
+                        data: serializedData,
+                        success: function (response) {
+                            // on successfull creating object
+                            // 1. clear the form.
+                            $(".save_form").trigger('reset');
+                        }
+                    });
+                });
+            </script>
+            </div>
+            {% else %}
+            <div> Connectez vous pour sauvegarder un substitut</div>
+            {% endif %}
         </div>
-        <a class="product_name" href="{{ product.product_url }}">{{ product }}</a>
-
     </div>
     {% endfor %}
 </div>

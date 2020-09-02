@@ -1,5 +1,67 @@
 {% extends "webapp/base.html" %}
-{% block title %}Mentions légales{% endblock %}
+{% block title %}Produits{% endblock %}
 {% block content %}
 {% load static %}
+<link href="{% static 'webapp/css/product.css' %}" rel="stylesheet" />
+<section class="product_top" style="background-image: url({{ product.product_img }});">
+    <div class="product_top_text">
+        <h1>
+            {{ product.product_name }}
+        </h1>
+    </div>
+</section>
+<div class="product_body">
+    <div class="col-md-6" style="float: left;">
+
+        <div class="nutriscore_char">
+            <img class="nutri_png" src="{% static 'webapp/img/' %}nutri{{ product.product_nutriscore}}.png" />
+        </div>
+
+    </div>
+    <div class="col-md-6" style="float: left;">
+        <div class="nutri_values">
+            <ul>Valeur énergetiques pour 100g:
+                <li>
+                    Énergie (kJ) : {{ nutriment.nutriments_kj}}
+                </li>
+                <li>
+                    Énergie (kcal) : {{ nutriment.nutriments_kcal}}
+                </li>
+                <li>
+                    Matières grasses / Lipides : {{ nutriment.nutriments_lipids}}
+                </li>
+                <li>
+                    dont Acides gras saturés : {{ nutriment.nutriments_fat }}
+                </li>
+                <li>
+                    Glucides : {{ nutriment.nutriments_carbohydrates }}
+                </li>
+                <li>
+                    dont Sucres : {{ nutriment.nutriments_sugar }}
+                </li>
+                <li>
+                    Protéines : {{ nutriment.nutriments_protein }}
+                </li>
+                <li>
+                    Sel : {{ nutriment.nutriments_salt }}
+                </li>
+                <li>
+                    Sodium : {{ nutriment.nutriments_sodium }}
+                </li>
+        </ul></div>
+    </div>
+    <div class="col-md 12 openfoodlink">
+        <a href="{{ product.product_url }}"><button style="font-size:1em">Voir la fiche d'OpenFoodFacts</button></a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</div>
 {% endblock %}

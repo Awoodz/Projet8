@@ -4,9 +4,14 @@
 {% load static %}
 <link href="{% static 'webapp/css/saved_products.css' %}" rel="stylesheet" />
 
+<!-- Top section -->
+<section class="saved_products_top">
+    <div class="saved_products_top_text">
+    </div>
+</section>
 
 <!-- Result section -->
-<div class="search_body">
+<div class="saved_products_body">
     {% for product in products %}
     <div class="col-md-4" style="float: left">
         <!-- image block -->

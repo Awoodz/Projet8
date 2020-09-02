@@ -36,7 +36,10 @@
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     <li class="nav-item text-center">
                         <div class="col-md-2">
-                            
+                            <form action="/search">
+                                {% csrf_token %}
+                                <input type="text" name="product_search">
+                            </form>
                         </div>
                     </li>
                     {% if user.is_authenticated %}
@@ -50,13 +53,9 @@
 
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
-                            <a class="nav-link js-scroll-trigger">
-                                <form action="{% url 'saved_products' %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="user_id" value="{{ user.id }}">
-                                    <input type="image" id="carot_icon" src="{% static 'webapp/img/carot.png' %}" />
-                                </form>  
-                            </a> 
+                            <a class="nav-link js-scroll-trigger" href="{% url 'saved_products' %}">
+                                <img id="carot_icon" src="{% static 'webapp/img/carot.png' %}" />
+                            </a>
                         </div>
                     </li>
                     <li class="nav-item">

@@ -19,6 +19,7 @@
 <!-- Result section -->
 <div class="search_body">
     {% for product in products %}
+
     <div class="col-md-4" style="float: left">
         <!-- image block -->
         <div class="result_box">
@@ -40,31 +41,33 @@
             <div class="name_box">
                 <h3><a class="product_name" href="/product/{{ product.id }}/">{{ product }}</a></h3>
             </div>
+
             {% if user.is_authenticated %}
             <div class="save_box">
                 <form class="save_form">
                     {% csrf_token %}
                     {{ form }}
                     <input type="hidden" name="product_token" value="{{ product.id }}">
-                    <input type="hidden" name="user_token" value="{{ user.id }}">
-                    <button type="submit" class="fa fa-floppy-o" name="save_product"></button>
+                    <button type="submit" name="save_product" class="fa fa-floppy-o search_save_button">
+                        Sauvegarder
+                    </button>
                 </form>
-            <script>
-                $('.save_form').on('submit', function(event){
-                    event.preventDefault();
-                    var serializedData = $(this).serialize();
-                    $.ajax({
-                        type: 'GET',
-                        url: "{% url 'save_product' %}",
-                        data: serializedData,
-                        success: function (response) {
-                            // on successfull creating object
-                            // 1. clear the form.
-                            $(".save_form").trigger('reset');
-                        }
+                <script>
+                    $('.save_form').on('onclick', function (event) {
+                        event.preventDefault();
+                        var serializedData = $(this).serialize();
+                        $.ajax({
+                            type: 'GET',
+                            url: "{% url 'save_product' %}",
+                            data: serializedData,
+                            success: function (response) {
+                                // on successfull creating object
+                                // 1. clear the form.
+                                $(".save_form").trigger('reset');
+                            }
+                        });
                     });
-                });
-            </script>
+                </script>
             </div>
             {% else %}
             <div> Connectez vous pour sauvegarder un substitut</div>

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django_sass",
     "dal",
     "dal_select2",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "fr-FR"
 
 TIME_ZONE = "UTC"
 

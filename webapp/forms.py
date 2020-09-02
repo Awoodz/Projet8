@@ -18,18 +18,19 @@ class CustomUserChangeForm(UserChangeForm):
 
 class ProductForm(forms.ModelForm):
     product_search = forms.ModelChoiceField(
+        label=False,
         queryset=Product.objects.all(),
         widget=autocomplete.ModelSelect2(
-            url='autocomplete',
+            url="autocomplete",
             attrs={
-            # Set some placeholder
-            'data-placeholder': 'Recherchez des substituts à un produit',
-            # Only trigger autocompletion after 3 characters have been typed
-            'data-minimum-input-length': 3,
+                # Set some placeholder
+                "data-placeholder": "Recherchez des substituts à un produit",
+                # Only trigger autocompletion after 3 characters have been typed
+                "data-minimum-input-length": 3,
             },
-        )
+        ),
     )
 
     class Meta:
         model = Product
-        fields = ('product_search',)
+        fields = ("product_search",)

@@ -113,3 +113,11 @@
 .nutriscore_ring_e .nutriscore_char {
   color: #FF0000;
 }
+
+.search_save_button {
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+/*# sourceMappingURL=../css/search.css.map */

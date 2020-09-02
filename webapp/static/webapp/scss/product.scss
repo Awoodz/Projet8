@@ -1,7 +1,7 @@
 .product_top
 {
     margin-top: 5em;
-    height: 30em;
+    height: 20em;
     width: 100%;
     display: table;
     background-color: #345A61;
@@ -19,10 +19,8 @@
 
 .product_body
 {
-    background-color: #DE9440;
-    height: 40em;
+    height: 20em;
     width: 100%;
-    display: table;
 }
 
 .openfoodlink
@@ -30,7 +28,45 @@
     width: 100%;
 }
 
+
+
+.product_background
+{
+    background-color: #DE9440;
+}
+
+.nutriscore_box
+{
+    width: 50%;
+    height: 20em;
+    display: table;
+}
+
+.nutriscore_char
+{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.nutriment_box
+{
+    width: 50%;
+    height: 20em;
+    display: table;
+}
+
 .nutri_values
 {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+}
+
+.off_button
+{
+    width: 100%;
     font-size: 2em;
+    font-weight: bold;
 }

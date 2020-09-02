@@ -10,49 +10,32 @@
         </h1>
     </div>
 </section>
-<div class="product_body">
-    <div class="col-md-6" style="float: left;">
+<div class="product_background">
+    <div class="product_body">
+        <div class="nutriscore_box col-md-6" style="float: left;">
+            <div class="nutriscore_char">
+                <img class="nutri_png" src="{% static 'webapp/img/' %}nutri{{ product.product_nutriscore}}.png" />
+            </div>
 
-        <div class="nutriscore_char">
-            <img class="nutri_png" src="{% static 'webapp/img/' %}nutri{{ product.product_nutriscore}}.png" />
         </div>
-
-    </div>
-    <div class="col-md-6" style="float: left;">
-        <div class="nutri_values">
-            <ul>Valeur énergetiques pour 100g:
-                <li>
-                    Énergie (kJ) : {{ nutriment.nutriments_kj}}
-                </li>
-                <li>
-                    Énergie (kcal) : {{ nutriment.nutriments_kcal}}
-                </li>
-                <li>
-                    Matières grasses / Lipides : {{ nutriment.nutriments_lipids}}
-                </li>
-                <li>
-                    dont Acides gras saturés : {{ nutriment.nutriments_fat }}
-                </li>
-                <li>
-                    Glucides : {{ nutriment.nutriments_carbohydrates }}
-                </li>
-                <li>
-                    dont Sucres : {{ nutriment.nutriments_sugar }}
-                </li>
-                <li>
-                    Protéines : {{ nutriment.nutriments_protein }}
-                </li>
-                <li>
-                    Sel : {{ nutriment.nutriments_salt }}
-                </li>
-                <li>
-                    Sodium : {{ nutriment.nutriments_sodium }}
-                </li>
-            </ul>
+        <div class="nutriment_box col-md-6" style="float: left;">
+            <div class="nutri_values">
+                <div>Valeur énergetiques pour 100g:<br />
+                    Énergie (kJ) : {{ nutriment.nutriments_kj}}kJ<br />
+                    Énergie (kcal) : {{ nutriment.nutriments_kcal}}kcal<br />
+                    Matières grasses / Lipides : {{ nutriment.nutriments_lipids}}g<br />
+                    dont Acides gras saturés : {{ nutriment.nutriments_fat }}g<br />
+                    Glucides : {{ nutriment.nutriments_carbohydrates }}g<br />
+                    dont Sucres : {{ nutriment.nutriments_sugar }}g<br />
+                    Protéines : {{ nutriment.nutriments_protein }}g<br />
+                    Sel : {{ nutriment.nutriments_salt }}g<br />
+                    Sodium : {{ nutriment.nutriments_sodium }}g
+                </div>
+            </div>
         </div>
     </div>
-    <div class="col-md 12 openfoodlink">
-        <a href="{{ product.product_url }}"><button style="font-size:1em">Voir la fiche d'OpenFoodFacts</button></a>
+    <div class="openfoodlink">
+        <a href="{{ product.product_url }}"><button class="off_button">Voir la fiche d'OpenFoodFacts</button></a>
     </div>
 </div>
 {% endblock %}

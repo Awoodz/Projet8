@@ -20,7 +20,6 @@ class Sql_insert():
         
         i = 0
         for elem in dt.CAT_LIST:
-            print(elem)
             # For each caracters in category name
             j = 0
             while j < len(dt.LIST_ACCENT):
@@ -30,7 +29,6 @@ class Sql_insert():
                     dt.LIST_NO_ACC[j]
                 )
                 j += 1
-            print(elem)
             category = Category(category_name=elem)
             try:
                 with transaction.atomic():

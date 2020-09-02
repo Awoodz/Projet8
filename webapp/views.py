@@ -16,8 +16,10 @@ class SignUp(generic.CreateView):
 
 
 class IndexView(generic.FormView):
-    template_name = "webapp/index.html"
     form_class = ProductForm
+
+    def get(self, request):
+        return render(request, "webapp/index.html", {"prodform": self.form_class,})
 
 
 def legal_mention(request):
@@ -78,8 +80,13 @@ class ProductAutocomplete(autocomplete.Select2QuerySetView):
 
 
 class ProductView(generic.FormView):
-    template_name = "webapp/search_form.html"
+    # template_name = "webapp/search_form.html"
     form_class = ProductForm
+
+    def get(self, request):
+        return render(
+            request, "webapp/search_form.html", {"prodform": self.form_class,}
+        )
 
 
 def save_product(request):

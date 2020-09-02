@@ -29,12 +29,12 @@ urlpatterns = [
     path("accounts/", include("webapp.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     url(r"^search/$", views.search),
-    url(r'^autocomplete/$', views.ProductAutocomplete.as_view(), name='autocomplete',),
-    url(r'^search_form/$', views.ProductView.as_view()),
+    url(r"^autocomplete/$", views.ProductAutocomplete.as_view(), name="autocomplete",),
+    url(r"^search_help/$", views.ProductView.as_view(), name="search_help"),
     url(r"^product/(?P<product_id>[0-9]+)/$", views.product),
     url(r"^save_product/$", views.save_product, name="save_product"),
 ]
 
 import debug_toolbar
 
-urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)), ] + urlpatterns
+urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)),] + urlpatterns

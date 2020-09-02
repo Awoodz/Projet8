@@ -16,6 +16,20 @@ class CustomUserChangeForm(UserChangeForm):
         fields = ("username", "email")
 
 
+class BaseForm(forms.ModelForm):
+    product_search = forms.CharField(
+        max_length=100,
+        label=False,
+        widget=forms.TextInput(
+            attrs={"placeholder": "Recherchez des substituts à un produit"}
+        ),
+    )
+
+    class Meta:
+        model = Product
+        fields = ("product_search",)
+
+
 class ProductForm(forms.ModelForm):
     product_search = forms.ModelChoiceField(
         label=False,

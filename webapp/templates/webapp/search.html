@@ -46,14 +46,13 @@
             <div class="save_box">
                 <form class="save_form">
                     {% csrf_token %}
-                    {{ form }}
                     <input type="hidden" name="product_token" value="{{ product.id }}">
                     <button type="submit" name="save_product" class="fa fa-floppy-o search_save_button">
                         Sauvegarder
                     </button>
                 </form>
                 <script>
-                    $('.save_form').on('onclick', function (event) {
+                    $('.save_form').on('submit', function (event) {
                         event.preventDefault();
                         var serializedData = $(this).serialize();
                         $.ajax({

@@ -1,9 +1,22 @@
-.saved_products_body
+.search_help_body
 {
     background-color: #DE9440;
-    height: 40em;
     width: 100%;
     display: table;
+}
+
+.pb_userform
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.search_help_bot
+{
+    background-color: #DE9440;
+    width: 100%;
+    display: table;
+    text-align: center;
 }
 
 .result_box
@@ -46,17 +59,18 @@
     width: auto;
 }
 
-.saved_products_top
+.search_help_top
 {
     margin-top: 5em;
     height: 20em;
     width: 100%;
     display: table;
     background-color: #345A61;
-    background-image: url(../img/photo3.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-.saved_products_top_text
+.search_help_top_text
 {
     color: white;
     display: table-cell;
@@ -126,4 +140,16 @@
     {
         color: #FF0000
     }
+}
+
+.help_title
+{
+    text-align: center;
+}
+
+.search_help_button
+{
+    border: none;
+    padding: 0;
+    background: none;
 }

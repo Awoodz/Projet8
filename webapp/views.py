@@ -3,9 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from webapp.models import Category, Product, Nutriments, CustomUser
 from webapp.utilities.sql.sql_insert import Sql_insert
 from .forms import CustomUserCreationForm, ProductForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from urllib.parse import urlencode
 from django.views import generic
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from dal import autocomplete
 
 
@@ -52,20 +53,29 @@ def product(request, product_id):
 def search(request):
     template = loader.get_template("webapp/search.html")
     query = request.GET.get("product_search")
-    print("C'est la query !", query)
-    searched_product = Product.objects.filter(id=query)
 
-    for picked_product in searched_product:
-        products = Product.objects.filter(
-            product_category_id=picked_product.product_category_id
-        ).order_by("product_nutriscore")
+    try:
+        searched_product = Product.objects.filter(id=query)
+    except ValueError:
+        searched_product = Product.objects.filter(product_name__iexact=query)
 
-    return HttpResponse(
-        template.render(
-            {"searched_product": searched_product, "products": products,},
-            request=request,
+    try:
+        for picked_product in searched_product:
+            products = Product.objects.filter(
+                product_category_id=picked_product.product_category_id
+            ).order_by("product_nutriscore")
+
+        return HttpResponse(
+            template.render(
+                {"searched_product": searched_product, "products": products,},
+                request=request,
+            )
         )
-    )
+    except UnboundLocalError:
+        base_url = reverse("search_help")
+        query_string = urlencode({"query": query})
+        url = "{}?{}".format(base_url, query_string)
+        return redirect(url)
 
 
 class ProductAutocomplete(autocomplete.Select2QuerySetView):
@@ -80,12 +90,15 @@ class ProductAutocomplete(autocomplete.Select2QuerySetView):
 
 
 class ProductView(generic.FormView):
-    # template_name = "webapp/search_form.html"
     form_class = ProductForm
 
     def get(self, request):
+        query = request.GET.get("query")
+        products = Product.objects.filter(product_name__icontains=query)
         return render(
-            request, "webapp/search_form.html", {"prodform": self.form_class,}
+            request,
+            "webapp/search_help.html",
+            {"prodform": self.form_class, "query": query, "products": products},
         )
 
 

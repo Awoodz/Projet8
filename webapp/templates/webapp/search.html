@@ -26,8 +26,8 @@
             <div class="img_box">
                 <div class="img_score">
                     <div>
-                        <a href="/product/{{ product.id }}/"><img class="product_img" src="{{ product.product_img }}"
-                                alt="{{ product }}" /></a>
+                        <a href="{% url 'product' product_id=product.id %}"><img class="product_img"
+                                src="{{ product.product_img }}" alt="{{ product }}" /></a>
                     </div>
                     <div class="nutriscore_img">
                         <div class="nutriscore_ring nutriscore_ring_{{ product.product_nutriscore }}">
@@ -39,12 +39,12 @@
                 </div>
             </div>
             <div class="name_box">
-                <h3><a class="product_name" href="/product/{{ product.id }}/">{{ product }}</a></h3>
+                <h3><a class="product_name" href="{% url 'product' product_id=product.id %}">{{ product }}</a></h3>
             </div>
 
             {% if user.is_authenticated %}
             <div class="save_box">
-                <form class="save_form">
+                <form class="save_form" onsubmit="ManageSaveFunction(event)">
                     {% csrf_token %}
                     <input type="hidden" name="product_token" value="{{ product.id }}">
                     <button type="submit" name="save_product" class="fa fa-floppy-o search_save_button">
@@ -52,20 +52,22 @@
                     </button>
                 </form>
                 <script>
-                    $('.save_form').on('submit', function (event) {
+                    function ManageSaveFunction(event) {
                         event.preventDefault();
-                        var serializedData = $(this).serialize();
                         $.ajax({
                             type: 'GET',
                             url: "{% url 'save_product' %}",
-                            data: serializedData,
+                            data: "product_token=" + $(event.currentTarget).find("input[name='product_token']").val(),
+                            dataType: "json",
+                            contentType: 'application/json',
                             success: function (response) {
                                 // on successfull creating object
                                 // 1. clear the form.
                                 $(".save_form").trigger('reset');
                             }
                         });
-                    });
+                        return false;
+                    }
                 </script>
             </div>
             {% else %}

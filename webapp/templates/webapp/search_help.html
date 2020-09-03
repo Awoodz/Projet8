@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="name_box">
-                <form action="/search" method="get">
+                <form action="{% url 'search' %}" method="get">
                     {% csrf_token %}
                     <button type="submit" class="search_help_button">
                         <h3>

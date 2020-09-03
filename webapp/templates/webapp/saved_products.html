@@ -20,8 +20,8 @@
             <div class="img_box">
                 <div class="img_score">
                     <div>
-                        <a href="/product/{{ product.id }}/"><img class="product_img" src="{{ product.product_img }}"
-                                alt="{{ product }}" /></a>
+                        <a href="{% url 'product' product_id=product.id %}"><img class="product_img"
+                                src="{{ product.product_img }}" alt="{{ product }}" /></a>
                     </div>
                     <div class="nutriscore_img">
                         <div class="nutriscore_ring nutriscore_ring_{{ product.product_nutriscore }}">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="name_box">
-                <h3><a class="product_name" href="/product/{{ product.id }}/">{{ product }}</a></h3>
+                <h3><a class="product_name" href="{% url 'product' product_id=product.id %}">{{ product }}</a></h3>
             </div>
         </div>
     </div>

@@ -60,7 +60,7 @@ def search(request):
     try:
         searched_product = Product.objects.filter(id=query)
     except ValueError:
-        searched_product = Product.objects.filter(product_name__iexact=query)
+        searched_product = Product.objects.filter(product_name__unaccent__iexact=query)
 
     try:
         for picked_product in searched_product:
@@ -87,7 +87,7 @@ class ProductAutocomplete(autocomplete.Select2QuerySetView):
         request = Product.objects.all()
 
         if self.q:
-            request = request.filter(product_name__istartswith=self.q)
+            request = request.filter(product_name__unaccent__istartswith=self.q)
 
         return request
 
@@ -97,7 +97,7 @@ class ProductView(generic.FormView):
 
     def get(self, request):
         query = request.GET.get("query")
-        products = Product.objects.filter(product_name__icontains=query)
+        products = Product.objects.filter(product_name__unaccent__icontains=query)
         return render(
             request,
             "webapp/search_help.html",

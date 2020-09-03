@@ -20,18 +20,18 @@ from django.urls import path
 from webapp import views
 
 urlpatterns = [
-    url(r"^$", views.IndexView.as_view()),
+    url(r"^$", views.IndexView.as_view(), name="index"),
     url(r"^webapp/", include("webapp.urls")),
     url("admin/", admin.site.urls),
-    url(r"^legalmention/", views.legal_mention),
-    url(r"^account/", views.account),
+    url(r"^legalmention/", views.legal_mention, name="legalmention"),
+    url(r"^account/", views.account, name="account"),
     url(r"^saved_products/", views.saved_products, name="saved_products"),
     path("accounts/", include("webapp.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
-    url(r"^search/$", views.search),
+    url(r"^search/$", views.search, name="search"),
     url(r"^autocomplete/$", views.ProductAutocomplete.as_view(), name="autocomplete",),
     url(r"^search_help/$", views.ProductView.as_view(), name="search_help"),
-    url(r"^product/(?P<product_id>[0-9]+)/$", views.product),
+    url(r"^product/(?P<product_id>[0-9]+)/$", views.product, name="product"),
     url(r"^save_product/$", views.save_product, name="save_product"),
 ]
 

@@ -1,10 +1,8 @@
-from webapp.utilities.api.externals.openfoodfact_request import Openfoodfact_request
 import webapp.utilities.data as dt
+from webapp.utilities.api.externals.openfoodfact_request import Openfoodfact_request
 
 
-class Requester():
-
-
+class Requester:
     def __init__(self, category):
         self.product_id_list = self.product_id_requester(category)
 

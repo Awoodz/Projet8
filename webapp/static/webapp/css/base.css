@@ -9964,14 +9964,6 @@ header.masthead h1 {
   background-color: var(--caramel);
 }
 
-#legal_mention {
-  float: left;
-}
-
-#contact_footer {
-  float: left;
-}
-
 .middle_section {
   height: 20em;
   background-color: pink;
@@ -9981,6 +9973,17 @@ header.masthead h1 {
   text-align: center;
   vertical-align: middle;
   line-height: 50em;
+}
+
+.pb_footer {
+  display: table;
+  width: 100%;
+}
+
+.text_footer {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
 }
 
 /*# sourceMappingURL=../css/base.css.map */

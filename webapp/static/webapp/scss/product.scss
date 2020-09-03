@@ -21,6 +21,7 @@
 {
     height: 20em;
     width: 100%;
+    display: table;
 }
 
 .openfoodlink
@@ -37,9 +38,10 @@
 
 .nutriscore_box
 {
-    width: 50%;
     height: 20em;
     display: table;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .nutriscore_char
@@ -51,7 +53,6 @@
 
 .nutriment_box
 {
-    width: 50%;
     height: 20em;
     display: table;
 }

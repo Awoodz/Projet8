@@ -1,7 +1,8 @@
-from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Product
 from dal import autocomplete
+from django import forms
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
+
+from .models import CustomUser, Product
 
 
 class CustomUserCreationForm(UserCreationForm):

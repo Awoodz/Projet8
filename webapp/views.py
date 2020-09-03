@@ -1,13 +1,16 @@
-from django.template import loader
-from django.http import HttpResponse, HttpResponseRedirect
-from webapp.models import Category, Product, Nutriments, CustomUser
-from webapp.utilities.sql.sql_insert import Sql_insert
-from .forms import CustomUserCreationForm, ProductForm
-from django.urls import reverse_lazy, reverse
 from urllib.parse import urlencode
-from django.views import generic
-from django.shortcuts import render, redirect
+
 from dal import autocomplete
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render
+from django.template import loader
+from django.urls import reverse, reverse_lazy
+from django.views import generic
+
+from webapp.models import Category, CustomUser, Nutriments, Product
+from webapp.utilities.sql.sql_insert import Sql_insert
+
+from .forms import CustomUserCreationForm, ProductForm
 
 
 class SignUp(generic.CreateView):

@@ -24,11 +24,10 @@ SECRET_KEY = os.environ["PUR_BEURRE_KEY"]
 
 # Heroku won't work without debug ???
 # SECURITY WARNING: don't run with debug turned on in production!
-# if os.environ.get('ENV') == 'PRODUCTION':
-#     DEBUG = False
-# else:
-#     DEBUG = True
-DEBUG = True
+if os.environ.get("ENV") == "PRODUCTION":
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 

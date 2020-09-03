@@ -14,8 +14,10 @@
 }
 
 .product_img {
-  height: 15em;
+  height: auto;
+  max-height: 10em;
   width: auto;
+  max-width: 10em;
   margin: 1em;
   display: inline-block;
 }

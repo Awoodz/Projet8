@@ -3,7 +3,7 @@
 {% block productform %}
 <!-- <div style="display: table;">
     <div style="display: table-cell; vertical-align: middle; text-align: center;"> -->
-<form action="/search" method="get">
+<form action="/search" method="get" title="Entrez le nom d'un produit">
     {% csrf_token %}
     {{ prodform.as_p }}
 

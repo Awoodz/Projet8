@@ -26,7 +26,8 @@
         <div class="container">
             <div class="col-md-7">
                 <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}#page-top" style="color: black;"><img
-                        id="logo_pb" src="{% static 'webapp/img/logo_pb.png' %}" />Pur Beurre</a>
+                        id="logo_pb" src="{% static 'webapp/img/logo_pb.png' %}" title="Retour à l'accueil"
+                        alt="Retour à l'acceuil" />Pur Beurre</a>
             </div>
 
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -36,7 +37,7 @@
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     <li class="nav-item text-center">
                         <div class="col-md-2">
-                            <form action="/search">
+                            <form action="/search" title="Entrez le nom d'un produit">
                                 {% csrf_token %}
                                 {{ baseform }}
                             </form>
@@ -46,14 +47,16 @@
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
                             <a class="nav-link js-scroll-trigger" href="{% url 'account' %}">
-                                <img id="login_icon" src="{% static 'webapp/img/login.png' %}" />
+                                <img id="login_icon" src="{% static 'webapp/img/login.png' %}" title="Mon compte"
+                                    alt="Mon compte" />
                             </a>
                         </div>
                     </li>
 
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
-                            <a class="nav-link js-scroll-trigger" href="{% url 'saved_products' %}">
+                            <a class="nav-link js-scroll-trigger" href="{% url 'saved_products' %}"
+                                title="Mes produits sauvegardés" alt="Mes produits sauvegardés">
                                 <img id="carot_icon" src="{% static 'webapp/img/carot.png' %}" />
                             </a>
                         </div>
@@ -61,7 +64,8 @@
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
                             <a href="{% url 'logout' %}">
-                                <img id="logoff_icon" src="{% static 'webapp/img/logoff.png' %}" />
+                                <img id="logoff_icon" src="{% static 'webapp/img/logoff.png' %}" title="Me déconnecter"
+                                    alt="Me déconnecter" />
                             </a>
                         </div>
                     </li>
@@ -73,7 +77,8 @@
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
                             <a href="{% url 'login' %}">
-                                <img id="login_icon" src="{% static 'webapp/img/login.png' %}" />
+                                <img id="login_icon" src="{% static 'webapp/img/login.png' %}"
+                                    title="Me connecter à mon compte" alt="Me connecter à mon compte" />
                             </a>
                         </div>
                     </li>

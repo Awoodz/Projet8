@@ -30,7 +30,8 @@
                     <div>
                         <form action="/search" method="get">
                             {% csrf_token %}
-                            <input class="product_img" type="image" src="{{ product.product_img}}">
+                            <input class="product_img" type="image" src="{{ product.product_img}}" title="{{ product }}"
+                                alt="{{ product }}">
                             <input type="hidden" value="{{ product.id}}" name="product_search">
                         </form>
                     </div>

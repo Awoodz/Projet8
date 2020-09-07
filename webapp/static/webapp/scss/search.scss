@@ -1,7 +1,7 @@
 .search_body
 {
     background-color: #DE9440;
-    height: 40em;
+    height: 20em;
     width: 100%;
     display: table;
 }
@@ -62,6 +62,13 @@
 .search_top_text
 {
     color: white;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.no_result_txt
+{
     display: table-cell;
     vertical-align: middle;
     text-align: center;

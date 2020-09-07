@@ -55,12 +55,24 @@ def search(request):
         searched_product = Product.objects.filter(id=query)
     except ValueError:
         searched_product = Product.objects.filter(product_name__unaccent__iexact=query)
+        i = 0
+        for products in searched_product:
+            i += 1
+            if i > 1:
+                base_url = reverse("search_help")
+                query_string = urlencode({"query": query})
+                url = "{}?{}".format(base_url, query_string)
+                return redirect(url)
 
     try:
         for picked_product in searched_product:
-            products = Product.objects.filter(
-                product_category_id=picked_product.product_category_id
-            ).order_by("product_nutriscore")
+            products = (
+                Product.objects.filter(
+                    product_category_id=picked_product.product_category_id
+                )
+                .exclude(product_nutriscore__gte=picked_product.product_nutriscore)
+                .order_by("product_nutriscore")[:30]
+            )
 
         return HttpResponse(
             template.render(

@@ -10,6 +10,8 @@ from django.views import generic
 from webapp.models import Category, Nutriments, Product
 from webapp.utilities.sql.sql_insert import Sql_insert
 
+from userapp.models import CustomUser
+
 from .forms import ProductForm
 
 
@@ -50,6 +52,7 @@ def product(request, product_id):
 def search(request):
     template = loader.get_template("webapp/search.html")
     query = request.GET.get("product_search")
+    current_user = request.user
 
     try:
         searched_product = Product.objects.filter(id=query)

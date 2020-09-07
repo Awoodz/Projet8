@@ -43,14 +43,18 @@
                 <h3><a class="product_name" href="{% url 'product' product_id=product.id %}">{{ product }}</a></h3>
             </div>
 
+
+
             {% if user.is_authenticated %}
             <div class="save_box">
+
                 <form class="save_form" onsubmit="ManageSaveFunction(event)">
                     {% csrf_token %}
                     <input type="hidden" name="product_token" value="{{ product.id }}">
                     <button type="submit" name="save_product" class="fa fa-floppy-o search_save_button">
                         Sauvegarder
                     </button>
+
                 </form>
                 <script>
                     function ManageSaveFunction(event) {
@@ -64,13 +68,19 @@
                             success: function (response) {
                                 // on successfull creating object
                                 // 1. clear the form.
-                                $(".save_form").trigger('reset');
+                                // $(".save_form").trigger('reset');
+
                             }
                         });
                         return false;
                     }
                 </script>
             </div>
+            {% for users in product.user_product.all %}
+            {% if users.id == user.id %}
+            Déja sauvegardé !
+            {% endif %}
+            {% endfor %}
             {% else %}
             <div> Connectez vous pour sauvegarder un substitut</div>
             {% endif %}

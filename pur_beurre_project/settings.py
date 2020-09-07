@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.postgres",
     "debug_toolbar",
     "webapp.apps.WebappConfig",
+    "userapp.apps.UserappConfig",
     "django_sass",
     "dal",
     "dal_select2",
@@ -167,4 +168,4 @@ if os.environ.get("ENV") == "PRODUCTION":
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
-AUTH_USER_MODEL = "webapp.CustomUser"
+AUTH_USER_MODEL = "userapp.CustomUser"

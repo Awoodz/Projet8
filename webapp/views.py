@@ -4,19 +4,13 @@ from dal import autocomplete
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.template import loader
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from django.views import generic
 
-from webapp.models import Category, CustomUser, Nutriments, Product
+from webapp.models import Category, Nutriments, Product
 from webapp.utilities.sql.sql_insert import Sql_insert
 
-from .forms import CustomUserCreationForm, ProductForm
-
-
-class SignUp(generic.CreateView):
-    form_class = CustomUserCreationForm
-    success_url = reverse_lazy("login")
-    template_name = "webapp/signup.html"
+from .forms import ProductForm
 
 
 class IndexView(generic.FormView):

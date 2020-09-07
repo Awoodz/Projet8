@@ -1,20 +1,7 @@
 from dal import autocomplete
 from django import forms
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-from .models import CustomUser, Product
-
-
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = CustomUser
-        fields = ("username", "email")
-
-
-class CustomUserChangeForm(UserChangeForm):
-    class Meta:
-        model = CustomUser
-        fields = ("username", "email")
+from .models import Product
 
 
 class BaseForm(forms.ModelForm):

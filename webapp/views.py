@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 from webapp.models import Category, Nutriments, Product
 from webapp.utilities.sql.sql_insert import Sql_insert
@@ -27,11 +28,13 @@ def legal_mention(request):
     return HttpResponse(template.render(request=request))
 
 
+@login_required
 def account(request):
     template = loader.get_template("webapp/account.html")
     return HttpResponse(template.render(request=request))
 
 
+@login_required
 def saved_products(request):
     template = loader.get_template("webapp/saved_products.html")
     current_user = request.user

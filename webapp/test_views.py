@@ -59,3 +59,9 @@ class ProductPageTestCase(TestCase):
         product_id = Product.objects.get(product_name="Fake product").id + 1
         response = self.client.get(reverse("product", args=(product_id,)))
         self.assertEqual(response.status_code, 404)
+
+
+class LegalMentionPageTestCase(TestCase):
+    def test_legal_mention_returns_200(self):
+        response = self.client.get(reverse("legalmention"))
+        self.assertEqual(response.status_code, 200)

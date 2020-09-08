@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     "django_sass",
     "dal",
     "dal_select2",
-    "crispy_forms",
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,8 @@ from .models import Product
 
 
 class BaseForm(forms.ModelForm):
+    """Basic search form"""
+
     product_search = forms.CharField(
         max_length=100,
         label=False,
@@ -19,6 +21,8 @@ class BaseForm(forms.ModelForm):
 
 
 class ProductForm(forms.ModelForm):
+    """autocomplete search form"""
+
     product_search = forms.ModelChoiceField(
         label=False,
         queryset=Product.objects.all(),

@@ -10,15 +10,19 @@ from webapp.utilities.api.requester import Requester
 
 
 class Sql_insert:
+    """Makes insertions in database"""
+
     def product_inserter():
-
+        """Makes category and product insertion in database"""
+        # setting the logger
         logger = logging.getLogger(__name__)
-
+        # emptying the database
         Category.objects.all().delete()
         Product.objects.all().delete()
         Nutriments.objects.all().delete()
 
         i = 0
+        # for each category in category list
         for elem in dt.CAT_LIST:
             # For each caracters in category name
             j = 0
@@ -26,20 +30,27 @@ class Sql_insert:
                 # Replace some characters with others, so we can use it in API
                 elem = elem.replace(dt.LIST_ACCENT[j], dt.LIST_NO_ACC[j])
                 j += 1
+            # create a category in database
             category = Category(category_name=elem)
+            # save if ok
             try:
                 with transaction.atomic():
                     category.save()
+            # report error if not ok
             except DatabaseError as cat_error:
                 logger.error(cat_error)
                 pass
 
+            # get id list using Requester class
             id_list = Requester(elem).product_id_list
 
+            # for each product id in id list
             for product_id in id_list:
+                # gather product data with Requester class
                 product_data = Product_data(
                     Requester.product_data_requester(product_id)
                 )
+                # create a product in database
                 product = Product(
                     product_name=product_data.name,
                     product_url=product_data.url,
@@ -47,7 +58,7 @@ class Sql_insert:
                     product_nutriscore=product_data.nutriscore,
                     product_category_id=category,
                 )
-
+                # create nutriments data affiliated to product
                 nutriments = Nutriments(
                     nutriments_product_id=product,
                     nutriments_kj=product_data.energy_kj,
@@ -60,24 +71,29 @@ class Sql_insert:
                     nutriments_salt=product_data.salt,
                     nutriments_sodium=product_data.sodium,
                 )
+                # save if ok
                 try:
                     with transaction.atomic():
                         product.save()
                         nutriments.save()
                         i += 1
                         print(str(i) + " produit(s) ajouté(s)")
+                # report error if not ok
                 except DatabaseError as prod_error:
                     logger.error(prod_error)
                     pass
 
     def user_saved_product_inserter(product, user):
-
+        """Save a user product"""
+        # setting the logger
         logger = logging.getLogger(__name__)
-
+        # create link between product and user
         product.user_product.add(user)
+        # save if ok
         try:
             with transaction.atomic():
                 product.save()
+        # report error if not ok
         except DatabaseError as save_error:
             logger.error(save_error)
             pass

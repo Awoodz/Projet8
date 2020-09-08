@@ -1,3 +1,4 @@
+# category list that will be used to get products id
 CAT_LIST = [
     "camemberts",
     "sodas au cola",
@@ -9,6 +10,7 @@ CAT_LIST = [
     "fruits",
 ]
 
+# number of page category request will gather id's from
 MAX_PAGE = 20
 
 # Accent characters list

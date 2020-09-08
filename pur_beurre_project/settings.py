@@ -27,7 +27,7 @@ SECRET_KEY = os.environ["PUR_BEURRE_KEY"]
 if os.environ.get("ENV") == "PRODUCTION":
     DEBUG = False
 else:
-    DEBUG = True
+    DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 

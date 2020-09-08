@@ -2,7 +2,7 @@ from urllib.parse import urlencode
 
 from dal import autocomplete
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
@@ -41,7 +41,7 @@ def saved_products(request):
 
 def product(request, product_id):
     template = loader.get_template("webapp/product.html")
-    product = Product.objects.get(pk=product_id)
+    product = get_object_or_404(Product, pk=product_id)
     nutriment = Nutriments.objects.get(nutriments_product_id=product_id)
 
     return HttpResponse(
@@ -114,3 +114,4 @@ def save_product(request):
     Sql_insert.user_saved_product_inserter(product, current_user)
 
     return HttpResponse("Vous n'avez rien à faire ici")
+

@@ -3,6 +3,8 @@ import logging
 from django.contrib.auth.models import User
 from django.db import DatabaseError, transaction
 
+from unidecode import unidecode
+
 import webapp.utilities.data as dt
 from webapp.models import Category, Nutriments, Product
 from webapp.utilities.api.product_data import Product_data
@@ -24,14 +26,10 @@ class Sql_insert:
         i = 0
         # for each category in category list
         for elem in dt.CAT_LIST:
-            # For each caracters in category name
-            j = 0
-            while j < len(dt.LIST_ACCENT):
-                # Replace some characters with others, so we can use it in API
-                elem = elem.replace(dt.LIST_ACCENT[j], dt.LIST_NO_ACC[j])
-                j += 1
+            # Replace some characters with others, so we can use it in API
+            elem = elem.replace(" ", "-")
             # create a category in database
-            category = Category(category_name=elem)
+            category = Category(category_name=unidecode(elem))
             # save if ok
             try:
                 with transaction.atomic():

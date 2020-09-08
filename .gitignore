@@ -12,3 +12,7 @@ webapp/utilities/api/externals/__pycache__/
 webapp/utilities/sql/__pycache__/
 webapp/management/__pycache__
 webapp/management/commands/__pycache__
+webapp/test/__pycache__
+userapp/__pycache__
+userapp/migrations/__pycache__
+userapp/test/__pycache__

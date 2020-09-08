@@ -103,7 +103,7 @@ class SavedProductsPageTestCase(TestCase):
 
 
 class SaveProductPageTestCase(TestCase):
-    def test_save_products_works(self):
+    def test_if_save_product_page_works(self):
         fake_cat = Category.objects.create(category_name="Fake category",)
         fake_prod = Product.objects.create(
             product_name="Fake product",
@@ -119,9 +119,88 @@ class SaveProductPageTestCase(TestCase):
 
         user_login = self.client.force_login(user)
 
-        response = self.client.get(
-            reverse("save_product"), {"product_token": product_id,}
-        )
+        self.client.get(reverse("save_product"), {"product_token": product_id,})
         self.assertEqual(
             fake_prod.user_product.filter(username="Fakeuser").exists(), True
         )
+
+
+class AutoCompletePageTestCase(TestCase):
+    def test_if_autocomplete_page_display_json_products_list(self):
+        fake_cat = Category.objects.create(category_name="Fake category",)
+        fake_prod = Product.objects.create(
+            product_name="Fake product",
+            product_url="http://fake_product.com",
+            product_img="http://fake_product.com/fakeprod.png",
+            product_nutriscore="e",
+            product_category_id=fake_cat,
+        )
+
+        product_id = str(Product.objects.get(product_name="Fake product").id)
+        product_name = Product.objects.get(product_name="Fake product").product_name
+
+        response = self.client.get(reverse("autocomplete"),)
+        self.assertEqual(
+            response.json(),
+            {
+                "results": [
+                    {
+                        "id": product_id,
+                        "text": product_name,
+                        "selected_text": product_name,
+                    }
+                ],
+                "pagination": {"more": False},
+            },
+        )
+
+
+class SearchHelpPageTestCase(TestCase):
+    def test_search_help_returns_200(self):
+        response = self.client.get(reverse("search_help"), {"query": "fa",})
+        self.assertEqual(response.status_code, 200)
+
+
+class SearchPageTestCase(TestCase):
+    def test_search_page_if_autocomplete_search_form_is_used(self):
+        fake_cat = Category.objects.create(category_name="Fake category",)
+        fake_prod = Product.objects.create(
+            product_name="Fake product",
+            product_url="http://fake_product.com",
+            product_img="http://fake_product.com/fakeprod.png",
+            product_nutriscore="e",
+            product_category_id=fake_cat,
+        )
+
+        product_id = Product.objects.get(product_name="Fake product").id
+
+        response = self.client.get(reverse("search"), {"product_search": product_id,})
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_page_if_classic_search_form_is_used_with_complete_name(self):
+        fake_cat = Category.objects.create(category_name="Fake category",)
+        fake_prod = Product.objects.create(
+            product_name="Fake product",
+            product_url="http://fake_product.com",
+            product_img="http://fake_product.com/fakeprod.png",
+            product_nutriscore="e",
+            product_category_id=fake_cat,
+        )
+
+        response = self.client.get(
+            reverse("search"), {"product_search": "Fake product",}
+        )
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_page_if_classic_search_form_is_used_with_incomplete_name(self):
+        fake_cat = Category.objects.create(category_name="Fake category",)
+        fake_prod = Product.objects.create(
+            product_name="Fake product",
+            product_url="http://fake_product.com",
+            product_img="http://fake_product.com/fakeprod.png",
+            product_nutriscore="e",
+            product_category_id=fake_cat,
+        )
+
+        response = self.client.get(reverse("search"), {"product_search": "fa",})
+        self.assertEqual(response.status_code, 302)

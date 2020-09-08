@@ -116,5 +116,5 @@ def save_product(request):
 
     Sql_insert.user_saved_product_inserter(product, current_user)
 
-    return HttpResponse("Vous n'avez rien à faire ici")
+    return HttpResponse("Vous ne devriez pas voir ceci !")
 

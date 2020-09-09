@@ -18,7 +18,6 @@ class AutoCompletePageTestCase(TestCase):
         product_name = Product.objects.get(product_name="Fake product").product_name
 
         response = self.client.get(reverse("autocomplete"),)
-        print(response.json())
         self.assertEqual(
             response.json(),
             {

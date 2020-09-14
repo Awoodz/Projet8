@@ -29,15 +29,16 @@ class MySeleniumTests(StaticLiveServerTestCase):
         password_input = self.selenium.find_element_by_name("password2")
         password_input.send_keys("testpass1")
         self.selenium.find_element_by_xpath('//button[@value="signup"]').click()
-        try:
-            WebDriverWait(self.selenium, 5).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "login_form"))
-            )
-            print("ça passe !")
-            username_input = self.selenium.find_element_by_name("username")
-            username_input.send_keys("testuser")
-            password_input = self.selenium.find_element_by_name("password")
-            password_input.send_keys("testpass1")
-            self.selenium.find_element_by_xpath('//button[@value="login"]').click()
-        except TimeoutError:
-            print("trop tard !")
+
+        WebDriverWait(self.selenium, 5).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "login_form"))
+        )
+        username_input = self.selenium.find_element_by_name("username")
+        username_input.send_keys("testuser")
+        password_input = self.selenium.find_element_by_name("password")
+        password_input.send_keys("testpass1")
+        self.selenium.find_element_by_xpath('//button[@value="login"]').click()
+        WebDriverWait(self.selenium, 5).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "pb_userform"))
+        )
+        assert self.selenium.current_url == self.live_server_url + "/"

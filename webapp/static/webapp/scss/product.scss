@@ -34,6 +34,7 @@
 .product_background
 {
     background-color: #DE9440;
+    text-align: center;
 }
 
 .nutriscore_box
@@ -67,7 +68,13 @@
 
 .off_button
 {
-    width: 100%;
+    width: 60%;
     font-size: 2em;
     font-weight: bold;
+}
+
+.product_bottom
+{
+    height: 10em;
+    background-color: #DE9440;
 }

@@ -1,5 +1,7 @@
 from dal import autocomplete
 from django import forms
+from django.core.validators import RegexValidator
+
 
 from .models import Product
 
@@ -7,9 +9,11 @@ from .models import Product
 class BaseForm(forms.ModelForm):
     """Basic search form"""
 
+    alpha_space = RegexValidator(r"^[a-zA-Z ]+$", "Seules les lettres sont autorisées")
     product_search = forms.CharField(
         max_length=100,
         label=False,
+        validators=[alpha_space],
         widget=forms.TextInput(
             attrs={"placeholder": "Recherchez des substituts à un produit"}
         ),

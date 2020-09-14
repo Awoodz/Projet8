@@ -16,3 +16,5 @@ webapp/test/__pycache__
 userapp/__pycache__
 userapp/migrations/__pycache__
 userapp/test/__pycache__
+.coverage
+geckodriver.log

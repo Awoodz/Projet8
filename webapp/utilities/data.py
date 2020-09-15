@@ -8,6 +8,8 @@ CAT_LIST = [
     "apéritifs",
     "légumes",
     "fruits",
+    "beurres",
+    "confiture",
 ]
 
 # number of page category request will gather id's from

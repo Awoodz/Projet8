@@ -35,8 +35,8 @@ class ProductForm(forms.ModelForm):
             attrs={
                 # Set some placeholder
                 "data-placeholder": "Recherchez des substituts à un produit",
-                # Only trigger autocompletion after 3 characters have been typed
-                "data-minimum-input-length": 3,
+                # Only trigger autocompletion after 1 character has been typed
+                "data-minimum-input-length": 1,
             },
         ),
     )

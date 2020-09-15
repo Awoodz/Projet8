@@ -14,9 +14,9 @@ Retrouvez l'application ici : https://vast-bastion-15394.herokuapp.com/
   * Installez les modules contenus dans le requirements.txt
   * Créez une variable d'environnement qui contiendra votre clé secrète. Nommez la "PUR_BEURRE_KEY".
   * Téléchargez et installez Postgresql
-  * Créez une base de donnée nommée "pur_beurre" encodé en utf8 ( '''createdb -E utf8 pur_beurre''' ) ou bien changez le paramètre NAME de la base de donnée dans le fichier settings.py
-  * Créez un utilisateur "root" ( '''createuser --superuser root''' ) ou bien changez le paramètre USER de la base de donnée dans le fichier settings.py
+  * Créez une base de donnée nommée "pur_beurre" encodé en utf8 ( ```createdb -E utf8 pur_beurre``` ) ou bien changez le paramètre NAME de la base de donnée dans le fichier settings.py
+  * Créez un utilisateur "root" ( ```createuser --superuser root``` ) ou bien changez le paramètre USER de la base de donnée dans le fichier settings.py
   * Assurez vous que le port utilisé par postgresql soit le port 5432, autrement, changez le paramètre PORT de la base de donnée dans le fichier settings.py
-  * Une fois votre serveur de base de donnée lancé, effectuez les migrations ( '''./manage.py migrate''' )
-  * Afin de remplir la base de donnée, lancez la commande suivante : '''./manage.py dtb_builder'''
-  * Enfin, executez la commande '''./manage.py runserver''' puis ouvrez votre navigateur web à l'adresse indiquée dans le terminal
+  * Une fois votre serveur de base de donnée lancé, effectuez les migrations ( ```./manage.py migrate``` )
+  * Afin de remplir la base de donnée, lancez la commande suivante : ```./manage.py dtb_builder```
+  * Enfin, executez la commande ```./manage.py runserver``` puis ouvrez votre navigateur web à l'adresse indiquée dans le terminal

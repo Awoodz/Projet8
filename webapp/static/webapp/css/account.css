@@ -12,6 +12,7 @@
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  font-family: "Open Sans", sans-serif;
 }
 
 .account_bottom {
@@ -26,6 +27,7 @@
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  font-family: "Open Sans", sans-serif;
 }
 
 /*# sourceMappingURL=../css/account.css.map */

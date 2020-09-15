@@ -66,7 +66,6 @@ ROOT_URLCONF = "pur_beurre_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
         "APP_DIRS": True,
         "DIRS": [os.path.join(BASE_DIR, "templates")],
         "OPTIONS": {

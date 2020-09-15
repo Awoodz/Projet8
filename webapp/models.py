@@ -32,4 +32,3 @@ class Nutriments(models.Model):
     nutriments_protein = models.CharField(max_length=20)
     nutriments_salt = models.CharField(max_length=20)
     nutriments_sodium = models.CharField(max_length=20)
-

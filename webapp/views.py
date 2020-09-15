@@ -1,17 +1,15 @@
 from urllib.parse import urlencode
 
 from dal import autocomplete
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 
-from webapp.models import Category, Nutriments, Product
+from webapp.models import Nutriments, Product
 from webapp.utilities.sql.sql_insert import Sql_insert
-
-from userapp.models import CustomUser
 
 from .forms import ProductForm
 
@@ -68,8 +66,6 @@ def search(request):
     template = loader.get_template("webapp/search.html")
     # get string in product_search key
     query = request.GET.get("product_search")
-    # set the user as the actual user
-    current_user = request.user
     # if autocomplete search form is used
     try:
         # get product with id
@@ -148,4 +144,3 @@ def save_product(request):
     Sql_insert.user_saved_product_inserter(product, current_user)
 
     return HttpResponse("Vous ne devriez pas voir ceci !")
-

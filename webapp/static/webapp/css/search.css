@@ -1,6 +1,6 @@
 .search_body {
   background-color: #DE9440;
-  height: 40em;
+  height: 20em;
   width: 100%;
   display: table;
 }
@@ -14,7 +14,9 @@
 }
 
 .product_img {
-  height: 15em;
+  height: auto;
+  max-height: 10em;
+  max-width: 10em;
   width: auto;
   margin: 1em;
   display: inline-block;
@@ -43,7 +45,7 @@
 
 .search_top {
   margin-top: 5em;
-  height: 30em;
+  height: 20em;
   width: 100%;
   display: table;
   background-color: #345A61;
@@ -53,6 +55,12 @@
 
 .search_top_text {
   color: white;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.no_result_txt {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
@@ -113,3 +121,11 @@
 .nutriscore_ring_e .nutriscore_char {
   color: #FF0000;
 }
+
+.search_save_button {
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+/*# sourceMappingURL=../css/search.css.map */

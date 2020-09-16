@@ -22,13 +22,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ["PUR_BEURRE_KEY"]
 
-# Heroku won't work without debug ???
 # SECURITY WARNING: don't run with debug turned on in production!
-# if os.environ.get('ENV') == 'PRODUCTION':
-#     DEBUG = False
-# else:
-#     DEBUG = True
-DEBUG = True
+if os.environ.get("ENV") == "PRODUCTION":
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -42,8 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     "debug_toolbar",
     "webapp.apps.WebappConfig",
+    "userapp.apps.UserappConfig",
     "django_sass",
     "dal",
     "dal_select2",
@@ -66,7 +66,6 @@ ROOT_URLCONF = "pur_beurre_project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
         "APP_DIRS": True,
         "DIRS": [os.path.join(BASE_DIR, "templates")],
         "OPTIONS": {
@@ -75,6 +74,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "webapp.context_processors.baseform",
             ],
         },
     },
@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "fr-FR"
 
 TIME_ZONE = "UTC"
 
@@ -165,4 +165,4 @@ if os.environ.get("ENV") == "PRODUCTION":
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
-AUTH_USER_MODEL = "webapp.CustomUser"
+AUTH_USER_MODEL = "userapp.CustomUser"

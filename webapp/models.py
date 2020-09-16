@@ -1,13 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-
-
-class CustomUser(AbstractUser):
-    pass
-    # add additional fields in here
-
-    def __str__(self):
-        return self.username
+from userapp.models import CustomUser
 
 
 class Category(models.Model):
@@ -40,4 +32,3 @@ class Nutriments(models.Model):
     nutriments_protein = models.CharField(max_length=20)
     nutriments_salt = models.CharField(max_length=20)
     nutriments_sodium = models.CharField(max_length=20)
-

@@ -1,6 +1,6 @@
 .product_top {
   margin-top: 5em;
-  height: 30em;
+  height: 20em;
   width: 100%;
   display: table;
   background-color: #345A61;
@@ -16,8 +16,7 @@
 }
 
 .product_body {
-  background-color: #DE9440;
-  height: 40em;
+  height: 20em;
   width: 100%;
   display: table;
 }
@@ -26,6 +25,46 @@
   width: 100%;
 }
 
-.nutri_values {
-  font-size: 2em;
+.product_background {
+  background-color: #DE9440;
+  text-align: center;
 }
+
+.nutriscore_box {
+  height: 20em;
+  display: table;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.nutriscore_char {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.nutriment_box {
+  height: 20em;
+  display: table;
+}
+
+.nutri_values {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Scope One", sans-serif;
+}
+
+.off_button {
+  width: 60%;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.product_bottom {
+  height: 10em;
+  background-color: #DE9440;
+}
+
+/*# sourceMappingURL=../css/product.css.map */

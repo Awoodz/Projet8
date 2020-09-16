@@ -10,14 +10,15 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{% static 'webapp/img/favicon.png' %}" />
     <!-- Google fonts-->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
-    <link href="http://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css" />
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+    <link href="//fonts.googleapis.com/css?family=Scope+One" rel="stylesheet" type="text/css" />
     <!-- Third party plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'webapp/css/base.css' %}" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body id="page-top">
@@ -25,8 +26,9 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
             <div class="col-md-7">
-                <a class="navbar-brand js-scroll-trigger" href="/#page-top"><img id="logo_pb"
-                        src="{% static 'webapp/img/logo_pb.png' %}" />Pur Beurre</a>
+                <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}#page-top" style="color: black;"><img
+                        id="logo_pb" src="{% static 'webapp/img/logo_pb.png' %}" title="Retour à l'accueil"
+                        alt="Retour à l'acceuil" />Pur Beurre</a>
             </div>
 
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -36,33 +38,35 @@
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     <li class="nav-item text-center">
                         <div class="col-md-2">
-                            
+                            <form action="/search" title="Entrez le nom d'un produit">
+                                {% csrf_token %}
+                                {{ baseform }}
+                            </form>
                         </div>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
-                            <a class="nav-link js-scroll-trigger" href="/account">
-                                <img id="login_icon" src="{% static 'webapp/img/login.png' %}" />
+                            <a class="nav-link js-scroll-trigger" href="{% url 'account' %}" title="Mon compte"
+                                alt="Mon compte">
+                                <i class="fa fa-user fa-2x" style="color: black;"></i>
                             </a>
                         </div>
                     </li>
 
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
-                            <a class="nav-link js-scroll-trigger">
-                                <form action="{% url 'saved_products' %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="user_id" value="{{ user.id }}">
-                                    <input type="image" id="carot_icon" src="{% static 'webapp/img/carot.png' %}" />
-                                </form>  
-                            </a> 
+                            <a class="nav-link js-scroll-trigger" href="{% url 'saved_products' %}"
+                                title="Mes produits sauvegardés" alt="Mes produits sauvegardés">
+                                <img id="carot_icon" src="{% static 'webapp/img/carot.png' %}" />
+                            </a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
-                            <a href="{% url 'logout' %}">
-                                <img id="logoff_icon" src="{% static 'webapp/img/logoff.png' %}" />
+                            <a href="{% url 'logout' %}" title="Me déconnecter" alt="Me déconnecter">
+
+                                <i class="fa fa-sign-out fa-2x" style="color: black;"></i>
                             </a>
                         </div>
                     </li>
@@ -73,8 +77,9 @@
                     </div>
                     <li class="nav-item">
                         <div class="col-md-1 text-center">
-                            <a href="{% url 'login' %}">
-                                <img id="login_icon" src="{% static 'webapp/img/login.png' %}" />
+                            <a href="{% url 'login' %}" title="Me connecter à mon compte"
+                                alt="Me connecter à mon compte">
+                                <i class="fa fa-sign-in fa-2x" style="color: black;"></i>
                             </a>
                         </div>
                     </li>
@@ -87,16 +92,19 @@
     {% block content %}
     {% endblock %}
     <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="col-md-6 text-center" id="legal_mention">
-            <a href="/legalmention">Mentions légales</a>
+    <footer class="bg-light py-5 pb_footer">
+        <div class="col-md-6 text_footer">
+            <a href="{% url 'legalmention' %}">
+                <h4>Mentions légales</h4>
+            </a>
         </div>
-        <div class="col-md-6 text-center" id="contact_footer">
-            <a class="js-scroll-trigger" href="/#contact">Contact</a>
+        <div class="col-md-6 text_footer">
+            <a class="js-scroll-trigger" href="{% url 'index' %}#contact">
+                <h4>Contact</h4>
+            </a>
         </div>
     </footer>
     <!-- Bootstrap core JS-->
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
     <!-- Third party plugin JS-->

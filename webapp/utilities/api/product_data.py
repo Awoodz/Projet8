@@ -1,8 +1,8 @@
 from dictor import dictor
 
 
-class Product_data():
-
+class Product_data:
+    """Gathers product data"""
 
     def __init__(self, product_data):
         self.datas = product_data
@@ -22,7 +22,6 @@ class Product_data():
     @property
     def name(self):
         return dictor(self.datas, "product.product_name_fr")
-
 
     @property
     def energy_kj(self):

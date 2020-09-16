@@ -22,7 +22,9 @@ class Product(models.Model):
 
 
 class Nutriments(models.Model):
-    nutriments_product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    nutriments_product_id = models.ForeignKey(
+        Product, on_delete=models.CASCADE
+    )
     nutriments_kj = models.CharField(max_length=20)
     nutriments_kcal = models.CharField(max_length=20)
     nutriments_lipids = models.CharField(max_length=20)

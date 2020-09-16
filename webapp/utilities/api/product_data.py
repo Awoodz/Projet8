@@ -17,7 +17,10 @@ class Product_data:
 
     @property
     def url(self):
-        return "https://fr.openfoodfacts.org/produit/" + dictor(self.datas, "code")
+        return (
+            "https://fr.openfoodfacts.org/produit/"
+            + dictor(self.datas, "code")
+        )
 
     @property
     def name(self):

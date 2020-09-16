@@ -30,10 +30,16 @@ urlpatterns = [
     path("accounts/", include("userapp.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     url(r"^search/$", views.search, name="search"),
-    url(r"^autocomplete/$", views.ProductAutocomplete.as_view(), name="autocomplete",),
+    url(
+        r"^autocomplete/$",
+        views.ProductAutocomplete.as_view(),
+        name="autocomplete",
+    ),
     url(r"^search_help/$", views.SearchHelpView.as_view(), name="search_help"),
     url(r"^product/(?P<product_id>[0-9]+)/$", views.product, name="product"),
     url(r"^save_product/$", views.save_product, name="save_product"),
 ]
 
-urlpatterns = [url(r"^__debug__/", include(debug_toolbar.urls)),] + urlpatterns
+urlpatterns = [
+    url(r"^__debug__/", include(debug_toolbar.urls)),
+] + urlpatterns

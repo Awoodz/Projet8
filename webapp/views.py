@@ -21,7 +21,11 @@ class IndexView(generic.FormView):
     form_class = ProductForm
 
     def get(self, request):
-        return render(request, "webapp/index.html", {"prodform": self.form_class,})
+        return render(
+            request,
+            "webapp/index.html",
+            {"prodform": self.form_class, }
+        )
 
 
 def legal_mention(request):
@@ -45,7 +49,9 @@ def saved_products(request):
     current_user = request.user
     # filters products with current user id
     products = Product.objects.filter(user_product=current_user.id)
-    return HttpResponse(template.render({"products": products}, request=request))
+    return HttpResponse(
+        template.render({"products": products}, request=request)
+    )
 
 
 def product(request, product_id):
@@ -57,7 +63,10 @@ def product(request, product_id):
     nutriment = Nutriments.objects.get(nutriments_product_id=product_id)
 
     return HttpResponse(
-        template.render({"product": product, "nutriment": nutriment}, request=request)
+        template.render(
+            {"product": product, "nutriment": nutriment},
+            request=request
+        )
     )
 
 
@@ -73,7 +82,9 @@ def search(request):
     # if classic search form is used
     except ValueError:
         # get product with name
-        searched_product = Product.objects.filter(product_name__unaccent__iexact=query)
+        searched_product = Product.objects.filter(
+            product_name__unaccent__iexact=query
+        )
         # if there is more than one result
         if searched_product.count() != 1:
             # redirect to the search help page
@@ -94,7 +105,7 @@ def search(request):
 
     return HttpResponse(
         template.render(
-            {"searched_product": searched_product, "products": products,},
+            {"searched_product": searched_product, "products": products, },
             request=request,
         )
     )
@@ -109,7 +120,9 @@ class ProductAutocomplete(autocomplete.Select2QuerySetView):
         request = Product.objects.all().order_by("id")
 
         if self.q:
-            request = request.filter(product_name__unaccent__istartswith=self.q)
+            request = request.filter(
+                product_name__unaccent__istartswith=self.q
+            )
 
         return request
 
@@ -124,11 +137,17 @@ class SearchHelpView(generic.FormView):
         """Find products that can match with user search"""
         query = request.GET.get("query")
         # filter products that contain query
-        products = Product.objects.filter(product_name__unaccent__icontains=query)
+        products = Product.objects.filter(
+            product_name__unaccent__icontains=query
+        )
         return render(
             request,
             "webapp/search_help.html",
-            {"prodform": self.form_class, "query": query, "products": products},
+            {
+                "prodform": self.form_class,
+                "query": query,
+                "products": products
+            },
         )
 
 

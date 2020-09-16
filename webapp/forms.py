@@ -9,7 +9,10 @@ from .models import Product
 class BaseForm(forms.ModelForm):
     """Basic search form"""
 
-    alpha_space = RegexValidator(r"^[a-zA-Z ]+$", "Seules les lettres sont autorisées")
+    alpha_space = RegexValidator(
+        r"^[a-zA-Z ]+$",
+        "Seules les lettres sont autorisées"
+    )
     product_search = forms.CharField(
         max_length=100,
         label=False,

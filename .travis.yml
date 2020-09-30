@@ -1,9 +1,11 @@
 language: python
-dist: xenial
 python:
   - "3.6"
 addons:
   chrome: stable
+before_install:
+  google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  ⋮
 install:
   - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.38/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
@@ -14,12 +16,11 @@ install:
   - pip install -r requirements.txt
 services:
   - postgresql
-  - xvfb
 before_script:
   - psql -c 'create user root;'
   - psql -c 'ALTER USER root SUPERUSER;'
   - psql -c 'create database pur_beurre;'
 script:
-  - xvfb-run --server-args="-screen 0 1024x768x24" make test
+  - pytest
 
 

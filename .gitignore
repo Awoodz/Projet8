@@ -18,3 +18,5 @@ userapp/migrations/__pycache__
 userapp/test/__pycache__
 .coverage
 geckodriver.log
+pur_beurre_project/settings/production.py
+.pytest_cache

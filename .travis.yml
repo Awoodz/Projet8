@@ -1,26 +1,18 @@
 language: python
 python:
   - "3.6"
-sudo: required
-dist: trusty
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  chrome: stable
 install:
+  - wget -N https://chromedriver.storage.googleapis.com/80.0.3987.106/chromedriver_linux64.zip -P ~/
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/share/
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
   - pip install -r requirements.txt
 services:
   - postgresql
-before_script:
-  - psql -c 'create user root;'
-  - psql -c 'ALTER USER root SUPERUSER;'
-  - psql -c 'create database pur_beurre;'
-  - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip -P ~/
-  - unzip ~/chromedriver_linux64.zip
-  - sudo mv chromedriver /usr/local/bin
-  - sudo chmod a+x /usr/local/bin/chromedriver
 script:
   - pytest
 

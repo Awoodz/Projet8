@@ -12,11 +12,11 @@ before_script:
   - psql -c 'create user root;'
   - psql -c 'ALTER USER root SUPERUSER;'
   - psql -c 'create database pur_beurre;'
-  # - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip -P ~/
-  # - mkdir webdriver
-  # - unzip ~/chromedriver_linux64.zip -d ~/webdriver
-  # - rm ~/chromedriver_linux64.zip
-  # - export PATH=$PATH:~/webdriver
+  - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip -P ~/
+  - mkdir webdriver
+  - unzip ~/chromedriver_linux64.zip -d ~/webdriver
+  - rm ~/chromedriver_linux64.zip
+  - export PATH=$PATH:~/webdriver
 script:
   - pytest
 

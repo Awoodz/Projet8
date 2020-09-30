@@ -7,7 +7,7 @@ services:
   - postgresql
 before_script:
   - psql -c 'create user root;'
-  - psql -c 'create database pur_beurre;'
+  - psql -c 'create database pur_beurre;' -U postgres
 script:
   - pytest
 

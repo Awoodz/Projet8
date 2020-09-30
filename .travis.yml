@@ -1,15 +1,12 @@
 language: python
 python:
-  - "3.6"      # current default Python on Travis CI
-  - "3.7"
-  - "3.8"
+  - "3.6"
 install:
   - pip install -r requirements.txt
 services:
   - postgresql
 before_script:
-  - psql -c 'create database pur_beurre;' -U root
-# command to run tests
+  - psql -c 'create database pur_beurre;' -E utf8 -U root
 script:
   - pytest
 

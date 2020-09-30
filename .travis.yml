@@ -13,10 +13,9 @@ before_script:
   - psql -c 'ALTER USER root SUPERUSER;'
   - psql -c 'create database pur_beurre;'
   - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip -P ~/
-  - mkdir webdriver
-  - unzip ~/chromedriver_linux64.zip -d ~/webdriver
-  - rm ~/chromedriver_linux64.zip
-  - export PATH=$PATH:~/webdriver
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - sudo mv chromedriver /usr/local/bin
+  - sudo chmod a+x /usr/local/bin/chromedriver
 script:
   - pytest
 

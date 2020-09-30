@@ -13,7 +13,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
     def setUpClass(cls):
         chrome_options = Options()
         chrome_options.add_argument(
-            "--headless --no-sandbox --no-default-browser-check --no-first-run --disable-default-apps"
+            "--headless --no-sandbox --no-default-browser-check --no-first-run --disable-default-apps --disable-dev-shm-usage"
         )
         super().setUpClass()
         cls.selenium = Chrome(options=chrome_options)

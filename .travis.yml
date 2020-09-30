@@ -11,9 +11,11 @@ before_script:
   - psql -c 'create database pur_beurre;'
 addons:
   apt:
+    update: true
     sources:
       - google-chrome
     packages:
+      - dpkg
       - google-chrome-stable
 script:
   - pytest

@@ -1,6 +1,9 @@
 language: python
 python:
   - "3.6"
+sudo: required
+addons:
+  chrome: stable
 install:
   - pip install -r requirements.txt
   - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.87/chromedriver_linux64.zip -P ~/
@@ -15,8 +18,6 @@ before_script:
   - psql -c 'create user root;'
   - psql -c 'ALTER USER root SUPERUSER;'
   - psql -c 'create database pur_beurre;'
-addons:
-  chrome: stable
 script:
   - pytest
 

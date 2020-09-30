@@ -10,7 +10,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--headless --no-sandbox")
         super().setUpClass()
         cls.selenium = WebDriver(options=chrome_options)
         cls.selenium.implicitly_wait(10)

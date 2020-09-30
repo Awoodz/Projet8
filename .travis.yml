@@ -10,7 +10,11 @@ before_script:
   - psql -c 'ALTER USER root SUPERUSER;'
   - psql -c 'create database pur_beurre;'
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 script:
   - pytest
 

@@ -1,5 +1,7 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium.webdriver.chrome.webdriver import WebDriver
+
+# from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -14,7 +16,7 @@ class MySeleniumTests(StaticLiveServerTestCase):
             "--headless --no-sandbox --no-default-browser-check --no-first-run --disable-default-apps"
         )
         super().setUpClass()
-        cls.selenium = WebDriver(options=chrome_options)
+        cls.selenium = Chrome(options=chrome_options)
         cls.selenium.implicitly_wait(10)
 
     @classmethod

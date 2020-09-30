@@ -8,3 +8,8 @@ install:
 # command to run tests
 script:
   - pytest
+
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database pur_beurre;' -U root

@@ -7,10 +7,10 @@ services:
   - postgresql
 before_script:
   - psql -c 'create user root;'
-  - psql -c 'ALTER USER root CREATEDB;'
   - psql -c 'ALTER USER root SUPERUSER;'
   - psql -c 'create database pur_beurre;'
-
+addons:
+  chrome: stable
 script:
   - pytest
 

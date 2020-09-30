@@ -10,9 +10,10 @@ install:
   - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.38/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
   - rm ~/chromedriver_linux64.zip
-  - sudo mv -f ~/chromedriver /usr/local/share/
-  - sudo chmod +x /usr/local/share/chromedriver
-  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  - PATH=$PATH:~/
+  # - sudo mv -f ~/chromedriver /usr/local/share/
+  # - sudo chmod +x /usr/local/share/chromedriver
+  # - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
   - pip install -r requirements.txt
 services:
   - postgresql

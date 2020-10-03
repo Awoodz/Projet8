@@ -18,3 +18,4 @@ userapp/migrations/__pycache__
 userapp/test/__pycache__
 .coverage
 geckodriver.log
+presentation

@@ -15,5 +15,7 @@ before_script:
   - psql -c 'create user root;'
   - psql -c 'ALTER USER root SUPERUSER;'
   - psql -c 'create database pur_beurre;'
+  - python manage.py migrate
+  - psql -c 'INSERT INTO webapp_category VALUES("categorietest");'
 script:
   - pytest
